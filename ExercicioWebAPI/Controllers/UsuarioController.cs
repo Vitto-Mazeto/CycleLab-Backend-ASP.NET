@@ -22,5 +22,13 @@ namespace ExercicioWebAPI.Controllers
                 ? Ok(usuarios)
                 : BadRequest("Não há usuarios");
         }
+        [HttpGet("{id}")]
+        public IActionResult GetById(int id)
+        {
+            var usuarios = _repository.GetUsuarioById(id);
+            return usuarios != null 
+                ? Ok(usuarios)
+                : BadRequest("Usuario Não Encontrado");
+        }
     }
 }

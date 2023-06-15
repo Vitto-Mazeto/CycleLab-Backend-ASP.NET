@@ -1,10 +1,13 @@
 {
   "version": 2,
-  "dgSpecHash": "JiGl/ij4LDUn9narIYlHYie/x2MS/N9GODwTjQR4v7AioOOQw29yf7gTMluMTr7nYvrCBlNJ3lQk75jVtb8trg==",
+  "dgSpecHash": "M2xAHSKf1LrWJG47PxzYFucXwjD0BpWZ3DmC+YUPmy5sZHoVqJR1DRzD27Q8oJX+77c9f0bABKPyXkPvciSctg==",
   "success": true,
   "projectFilePath": "C:\\Users\\vitto.mazeto\\source\\repos\\ExercicioWebAPI\\ExercicioWebAPI\\ExercicioWebAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\vitto.mazeto\\.nuget\\packages\\humanizer.core\\2.14.1\\humanizer.core.2.14.1.nupkg.sha512",
+    "C:\\Users\\vitto.mazeto\\.nuget\\packages\\microsoft.aspnetcore.jsonpatch\\6.0.18\\microsoft.aspnetcore.jsonpatch.6.0.18.nupkg.sha512",
+    "C:\\Users\\vitto.mazeto\\.nuget\\packages\\microsoft.aspnetcore.mvc.newtonsoftjson\\6.0.18\\microsoft.aspnetcore.mvc.newtonsoftjson.6.0.18.nupkg.sha512",
+    "C:\\Users\\vitto.mazeto\\.nuget\\packages\\microsoft.csharp\\4.7.0\\microsoft.csharp.4.7.0.nupkg.sha512",
     "C:\\Users\\vitto.mazeto\\.nuget\\packages\\microsoft.data.sqlite.core\\7.0.7\\microsoft.data.sqlite.core.7.0.7.nupkg.sha512",
     "C:\\Users\\vitto.mazeto\\.nuget\\packages\\microsoft.entityframeworkcore\\7.0.7\\microsoft.entityframeworkcore.7.0.7.nupkg.sha512",
     "C:\\Users\\vitto.mazeto\\.nuget\\packages\\microsoft.entityframeworkcore.abstractions\\7.0.7\\microsoft.entityframeworkcore.abstractions.7.0.7.nupkg.sha512",
@@ -27,6 +30,8 @@
     "C:\\Users\\vitto.mazeto\\.nuget\\packages\\microsoft.extensions.primitives\\7.0.0\\microsoft.extensions.primitives.7.0.0.nupkg.sha512",
     "C:\\Users\\vitto.mazeto\\.nuget\\packages\\microsoft.openapi\\1.2.3\\microsoft.openapi.1.2.3.nupkg.sha512",
     "C:\\Users\\vitto.mazeto\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\vitto.mazeto\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512",
+    "C:\\Users\\vitto.mazeto\\.nuget\\packages\\newtonsoft.json.bson\\1.0.2\\newtonsoft.json.bson.1.0.2.nupkg.sha512",
     "C:\\Users\\vitto.mazeto\\.nuget\\packages\\sqlitepclraw.bundle_e_sqlite3\\2.1.4\\sqlitepclraw.bundle_e_sqlite3.2.1.4.nupkg.sha512",
     "C:\\Users\\vitto.mazeto\\.nuget\\packages\\sqlitepclraw.core\\2.1.4\\sqlitepclraw.core.2.1.4.nupkg.sha512",
     "C:\\Users\\vitto.mazeto\\.nuget\\packages\\sqlitepclraw.lib.e_sqlite3\\2.1.4\\sqlitepclraw.lib.e_sqlite3.2.1.4.nupkg.sha512",

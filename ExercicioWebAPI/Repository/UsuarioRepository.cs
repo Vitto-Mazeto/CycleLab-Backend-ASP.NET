@@ -18,7 +18,7 @@ namespace ExercicioWebAPI.Repository
 
         public Usuario GetUsuarioById(int id)
         {
-            throw new NotImplementedException();
+            return _context.Usuarios.Where(x => x.Id == id).FirstOrDefault();
         }
 
     }
