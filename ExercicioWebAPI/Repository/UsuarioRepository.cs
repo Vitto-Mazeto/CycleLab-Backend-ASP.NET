@@ -1,6 +1,8 @@
 ﻿using ExercicioWebAPI.Context;
+using ExercicioWebAPI.Models.DTOs;
 using ExercicioWebAPI.Models.Entities;
 using ExercicioWebAPI.Repository.Interfaces;
+using Microsoft.EntityFrameworkCore;
 
 namespace ExercicioWebAPI.Repository
 {
@@ -11,14 +13,16 @@ namespace ExercicioWebAPI.Repository
         {
             _context = context;
         }
-        public IEnumerable<Usuario> GetUsuarios()
+        public async Task<IEnumerable<Usuario>> GetUsuariosAsync()
         {
-            return _context.Usuarios.ToList();
+            return await _context.Usuarios
+                         .ToListAsync();
         }
 
-        public Usuario GetUsuarioById(int id)
+        public async Task<Usuario> GetUsuarioByIdAsync(int id)
         {
-            return _context.Usuarios.Where(x => x.Id == id).FirstOrDefault();
+            return await _context.Usuarios.Where(x => x.Id == id)
+                .FirstOrDefaultAsync();
         }
 
     }

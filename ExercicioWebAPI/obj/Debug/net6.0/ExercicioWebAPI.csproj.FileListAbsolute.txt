@@ -82,3 +82,5 @@ C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net
 C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\Microsoft.AspNetCore.Mvc.NewtonsoftJson.dll
 C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\Newtonsoft.Json.dll
 C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\Newtonsoft.Json.Bson.dll
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\AutoMapper.dll
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\AutoMapper.Extensions.Microsoft.DependencyInjection.dll
