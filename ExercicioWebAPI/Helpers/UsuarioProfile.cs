@@ -9,6 +9,7 @@ namespace ExercicioWebAPI.Helpers
         public UsuarioProfile()
         {
             CreateMap<Usuario, UsuarioDto>();
+            CreateMap<UsuarioAddDto, Usuario>();
         }
     }
 }

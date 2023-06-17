@@ -13,7 +13,7 @@ namespace ExercicioWebAPI.Repository
         }
         public void Add<T>(T entity) where T : class
         {
-            throw new NotImplementedException();
+            _context.Add(entity);
         }
 
         public void Delete<T>(T entity) where T : class
@@ -21,9 +21,9 @@ namespace ExercicioWebAPI.Repository
             throw new NotImplementedException();
         }
 
-        public bool SaveChanges()
+        public async Task<bool> SaveChangesAsync()
         {
-            throw new NotImplementedException();
+            return await _context.SaveChangesAsync() > 0;
         }
 
         public void Update<T>(T entity) where T : class

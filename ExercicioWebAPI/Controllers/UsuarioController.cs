@@ -32,8 +32,7 @@ namespace ExercicioWebAPI.Controllers
             };
 
             return usuariosRetorno.Any()
-                ? Ok(usuariosRetorno)
-                : BadRequest("Não há usuarios");
+                ? Ok(usuariosRetorno) : BadRequest("Não há usuarios");
         }
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
@@ -41,8 +40,19 @@ namespace ExercicioWebAPI.Controllers
             var usuario = await _repository.GetUsuarioByIdAsync(id);
             var usuarioRetorno = _mapper.Map<UsuarioDto>(usuario);
             return usuarioRetorno != null 
-                ? Ok(usuarioRetorno)
-        : BadRequest("Usuario Não Encontrado");
-    }
+                ? Ok(usuarioRetorno) : BadRequest("Usuario Não Encontrado");
+        }
+        [HttpPost]
+        public async Task<IActionResult> Post(UsuarioAddDto usuario)
+        {
+            if (usuario == null) return BadRequest("Dados Inválidos");
+
+            var usuarioAdd = _mapper.Map<Usuario>(usuario);
+
+            _repository.Add(usuarioAdd);
+
+            return await _repository.SaveChangesAsync()
+                ? Ok("Usuário Adicionado com sucesso!") : BadRequest("Erro ao adicionar o usuário");
+        }
     }
 }
