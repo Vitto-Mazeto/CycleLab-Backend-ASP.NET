@@ -54,5 +54,38 @@ namespace ExercicioWebAPI.Controllers
             return await _repository.SaveChangesAsync()
                 ? Ok("Usuário Adicionado com sucesso!") : BadRequest("Erro ao adicionar o usuário");
         }
+
+        [HttpPut("{id}")]
+        public async Task<IActionResult> Put(int id, UsuarioUpdateDto usuario)
+        {
+            if (id <= 0) return BadRequest("Usuário não informado");
+
+            var usuarioBanco = await _repository.GetUsuarioByIdAsync(id);
+
+            // Mapeia o objeto "usuario" recebido como parâmetro para o objeto "usuarioBanco" obtido do banco de dados
+            var usuarioUpdate = _mapper.Map(usuario, usuarioBanco);
+
+            _repository.Update(usuarioUpdate);
+
+            return await _repository.SaveChangesAsync()
+                ? Ok("Usuário atualizado com sucesso!") : BadRequest("Erro ao atualizar o usuário");
+
+        }
+
+        [HttpDelete("{id}")]
+        public async Task<IActionResult> Delete(int id)
+        {
+            if (id <= 0) return BadRequest("Usuário inválido");
+
+            var usuarioDelete = await _repository.GetUsuarioByIdAsync(id);
+
+            if (usuarioDelete == null) return NotFound("Usuário não encontrado");
+
+            _repository.Delete(usuarioDelete);
+
+            return await _repository.SaveChangesAsync()
+                ? Ok("Usuário deletado com sucesso!") : BadRequest("Erro ao deletar o usuário");
+        }
+
     }
 }
