@@ -1,6 +1,8 @@
 using ExercicioWebAPI.Context;
 using ExercicioWebAPI.Repository;
 using ExercicioWebAPI.Repository.Interfaces;
+using ExercicioWebAPI.Services;
+using ExercicioWebAPI.Services.Interfaces;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Migrations.Internal;
 
@@ -14,6 +16,7 @@ builder.Services.AddControllers().AddNewtonsoftJson(options =>
 });
 builder.Services.AddAutoMapper(typeof(Program)); // ver depois
 builder.Services.AddScoped<IBaseRepository, BaseRepository>();
+builder.Services.AddScoped<IUsuarioService, UsuarioService>();
 builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
 builder.Services.AddDbContext<ExcWebAPIContext>(options =>
 {

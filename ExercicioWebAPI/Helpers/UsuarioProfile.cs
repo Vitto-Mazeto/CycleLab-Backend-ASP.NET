@@ -9,8 +9,8 @@ namespace ExercicioWebAPI.Helpers
         public UsuarioProfile()
         {
             CreateMap<Usuario, UsuarioDto>();
-            CreateMap<UsuarioAddDto, Usuario>();
-            CreateMap<UsuarioUpdateDto, Usuario>()
+            CreateMap<UsuarioAddViewModel, Usuario>();
+            CreateMap<UsuarioUpdateViewModel, Usuario>()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         }
     }
