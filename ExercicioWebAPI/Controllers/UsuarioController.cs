@@ -43,7 +43,7 @@ namespace ExercicioWebAPI.Controllers
                 ? Ok(usuarioRetorno) : BadRequest("Usuario Não Encontrado");
         }
         [HttpPost]
-        public async Task<IActionResult> Post(UsuarioAddDto usuario)
+        public async Task<IActionResult> Post(UsuarioAddViewModel usuario)
         {
             if (usuario == null) return BadRequest("Dados Inválidos");
 
@@ -56,7 +56,7 @@ namespace ExercicioWebAPI.Controllers
         }
 
         [HttpPut("{id}")]
-        public async Task<IActionResult> Put(int id, UsuarioUpdateDto usuario)
+        public async Task<IActionResult> Put(int id, UsuarioUpdateViewModel usuario)
         {
             if (id <= 0) return BadRequest("Usuário não informado");
 
