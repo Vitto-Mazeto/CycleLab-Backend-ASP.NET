@@ -34,7 +34,10 @@ namespace ExercicioWebAPI.Services
 
             var result = await _userManager.CreateAsync(identityUser, usuarioCadastro.Senha);
             if (result.Succeeded)
+            {
+                await _userManager.AddToRoleAsync(identityUser, "ADMIN");
                 await _userManager.SetLockoutEnabledAsync(identityUser, false);
+            }
 
             var usuarioCadastroResponse = new UserRegisterResponse(result.Succeeded);
             if (!result.Succeeded && result.Errors.Count() > 0)
