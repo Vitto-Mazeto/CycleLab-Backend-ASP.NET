@@ -42,6 +42,8 @@ builder.Services.AddScoped<IAmostraRepository, AmostraRepository>();
 // Configure services
 builder.Services.AddScoped<IAmostraService, AmostraService>();
 
+builder.Services.AddScoped<ITokenService, TokenService>();
+
 // Configure Entity Framework Contexts
 builder.Services.AddDbContext<ExcWebAPIContext>(options =>
 {

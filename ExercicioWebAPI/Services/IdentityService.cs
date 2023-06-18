@@ -1,12 +1,8 @@
-﻿using ExercicioWebAPI.Configurations;
-using ExercicioWebAPI.DTOs.Responses;
+﻿using ExercicioWebAPI.DTOs.Responses;
 using ExercicioWebAPI.DTOs.ViewModels;
 using ExercicioWebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Options;
-using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
 
 namespace ExercicioWebAPI.Services
 {
@@ -14,15 +10,15 @@ namespace ExercicioWebAPI.Services
     {
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
-        private readonly JwtOptions _jwtOptions;
+        private readonly ITokenService _tokenService;
 
         public IdentityService(SignInManager<IdentityUser> signInManager,
                                UserManager<IdentityUser> userManager,
-                               IOptions<JwtOptions> jwtOptions)
+                               ITokenService tokenService)
         {
             _signInManager = signInManager;
             _userManager = userManager;
-            _jwtOptions = jwtOptions.Value;
+            _tokenService = tokenService;
         }
 
         public async Task<UserRegisterResponse> RegisterUser(UserRegisterViewModel usuarioCadastro)
@@ -60,7 +56,11 @@ namespace ExercicioWebAPI.Services
         {
             var result = await _signInManager.PasswordSignInAsync(usuarioLogin.Email, usuarioLogin.Senha, false, true);
             if (result.Succeeded)
-                return await GerarToken(usuarioLogin.Email);
+            {
+                var user = await _userManager.FindByEmailAsync(usuarioLogin.Email);
+                var tokenResponse = await _tokenService.GerarToken(user);
+                return new UserLoginResponse(true, tokenResponse.Token, tokenResponse.DataExpiracao);
+            }
 
             var usuarioLoginResponse = new UserLoginResponse(result.Succeeded);
             if (!result.Succeeded)
@@ -137,50 +137,6 @@ namespace ExercicioWebAPI.Services
             var result = await _userManager.DeleteAsync(user);
 
             return result.Succeeded;
-        }
-
-        private async Task<UserLoginResponse> GerarToken(string email)
-        {
-            var user = await _userManager.FindByEmailAsync(email);
-            var tokenClaims = await ObterClaims(user);
-
-            var dataExpiracao = DateTime.Now.AddSeconds(_jwtOptions.Expiration);
-
-            var jwt = new JwtSecurityToken(
-                issuer: _jwtOptions.Issuer,
-                audience: _jwtOptions.Audience,
-                claims: tokenClaims,
-                notBefore: DateTime.Now,
-                expires: dataExpiracao,
-                signingCredentials: _jwtOptions.SigningCredentials);
-
-            var token = new JwtSecurityTokenHandler().WriteToken(jwt);
-
-            return new UserLoginResponse
-            (
-                sucesso: true,
-                token: token,
-                dataExpiracao: dataExpiracao
-            );
-        }
-
-        private async Task<IList<Claim>> ObterClaims(IdentityUser user)
-        {
-            var claims = await _userManager.GetClaimsAsync(user);
-            var roles = await _userManager.GetRolesAsync(user);
-
-            //Claims padrões para ter no token
-            claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.Id));
-            claims.Add(new Claim(JwtRegisteredClaimNames.Email, user.Email));
-            claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
-            claims.Add(new Claim(JwtRegisteredClaimNames.Nbf, DateTime.Now.ToString()));
-            claims.Add(new Claim(JwtRegisteredClaimNames.Iat, DateTime.Now.ToString()));
-
-            //Papel do usuario
-            foreach (var role in roles)
-                claims.Add(new Claim("role", role));
-
-            return claims;
         }
     }
 }
