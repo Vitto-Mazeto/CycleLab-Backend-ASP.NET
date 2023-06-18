@@ -1,4 +1,5 @@
 ﻿using ExercicioWebAPI.Models.ViewModels;
+using ExercicioWebAPI.Roles;
 using ExercicioWebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -38,6 +39,7 @@ namespace ExercicioWebAPI.Controllers
                 : BadRequest("Usuário não encontrado");
         }
 
+        [Authorize(Roles = Roles.Roles.Admin)]
         [HttpPost]
         public async Task<IActionResult> Post(UsuarioAddViewModel usuario)
         {
