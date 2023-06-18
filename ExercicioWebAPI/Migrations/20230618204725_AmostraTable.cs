@@ -5,7 +5,7 @@
 namespace ExercicioWebAPI.Migrations
 {
     /// <inheritdoc />
-    public partial class FirstMigration : Migration
+    public partial class AmostraTable : Migration
     {
         /// <inheritdoc />
         protected override void Up(MigrationBuilder migrationBuilder)
@@ -17,7 +17,7 @@ namespace ExercicioWebAPI.Migrations
                     id = table.Column<int>(type: "INTEGER", nullable: false)
                         .Annotation("Sqlite:Autoincrement", true),
                     nome = table.Column<string>(type: "varchar(100)", nullable: false),
-                    funcao = table.Column<int>(type: "varchar(100)", nullable: false)
+                    numero_de_exames = table.Column<int>(type: "int", nullable: false)
                 },
                 constraints: table =>
                 {

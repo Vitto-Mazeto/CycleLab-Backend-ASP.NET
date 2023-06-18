@@ -7,7 +7,7 @@ namespace ExercicioWebAPI.Context
     {
         public ExcWebAPIContext(DbContextOptions<ExcWebAPIContext> options) : base(options) { }
 
-        public DbSet<Usuario> Usuarios { get; set; }
+        public DbSet<Amostra> Amostras { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {

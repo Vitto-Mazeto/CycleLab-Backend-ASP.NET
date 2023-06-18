@@ -37,10 +37,10 @@ builder.Services.AddAutoMapper(typeof(Program));
 
 // Configure repositories
 builder.Services.AddScoped<IBaseRepository, BaseRepository>();
-builder.Services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+builder.Services.AddScoped<IAmostraRepository, AmostraRepository>();
 
 // Configure services
-builder.Services.AddScoped<IUsuarioService, UsuarioService>();
+builder.Services.AddScoped<IAmostraService, AmostraService>();
 
 // Configure Entity Framework Contexts
 builder.Services.AddDbContext<ExcWebAPIContext>(options =>

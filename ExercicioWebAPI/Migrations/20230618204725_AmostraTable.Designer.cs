@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace ExercicioWebAPI.Migrations
 {
     [DbContext(typeof(ExcWebAPIContext))]
-    [Migration("20230615202720_First-Migration")]
-    partial class FirstMigration
+    [Migration("20230618204725_AmostraTable")]
+    partial class AmostraTable
     {
         /// <inheritdoc />
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -19,7 +19,7 @@ namespace ExercicioWebAPI.Migrations
 #pragma warning disable 612, 618
             modelBuilder.HasAnnotation("ProductVersion", "7.0.7");
 
-            modelBuilder.Entity("ExercicioWebAPI.Models.Entities.Usuario", b =>
+            modelBuilder.Entity("ExercicioWebAPI.Models.Entities.Amostra", b =>
                 {
                     b.Property<int>("Id")
                         .ValueGeneratedOnAdd()
@@ -31,9 +31,9 @@ namespace ExercicioWebAPI.Migrations
                         .HasColumnType("varchar(100)")
                         .HasColumnName("nome");
 
-                    b.Property<int>("Role")
-                        .HasColumnType("varchar(100)")
-                        .HasColumnName("funcao");
+                    b.Property<int>("NumeroDeExames")
+                        .HasColumnType("int")
+                        .HasColumnName("numero_de_exames");
 
                     b.HasKey("Id");
 

@@ -6,22 +6,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace ExercicioWebAPI.Repository
 {
-    public class UsuarioRepository : BaseRepository, IUsuarioRepository
+    public class AmostraRepository : BaseRepository, IAmostraRepository
     {
         private readonly ExcWebAPIContext _context;
-        public UsuarioRepository(ExcWebAPIContext context) : base(context)
+        public AmostraRepository(ExcWebAPIContext context) : base(context)
         {
             _context = context;
         }
-        public async Task<IEnumerable<Usuario>> GetUsuariosAsync()
+        public async Task<IEnumerable<Amostra>> GetAmostrasAsync()
         {
-            return await _context.Usuarios
+            return await _context.Amostras
                          .ToListAsync();
         }
 
-        public async Task<Usuario> GetUsuarioByIdAsync(int id)
+        public async Task<Amostra> GetAmostraByIdAsync(int id)
         {
-            return await _context.Usuarios.Where(x => x.Id == id)
+            return await _context.Amostras.Where(x => x.Id == id)
                 .FirstOrDefaultAsync();
         }
 

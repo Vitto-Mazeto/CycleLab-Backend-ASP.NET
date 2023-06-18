@@ -1,8 +1,8 @@
 ﻿namespace ExercicioWebAPI.Models.ViewModels
 {
-    public class UsuarioUpdateViewModel
+    public class AmostraUpdateViewModel
     {
         public string? Nome { get; set; }
-        public string? Role { get; set; }
+        public int? NumeroDeExames { get; set; }
     }
 }

@@ -5,13 +5,13 @@ using ExercicioWebAPI.Models.ViewModels;
 
 namespace ExercicioWebAPI.Helpers
 {
-    public class UsuarioProfile : Profile
+    public class AmostraProfile : Profile
     {
-        public UsuarioProfile()
+        public AmostraProfile()
         {
-            CreateMap<Usuario, UsuarioDto>();
-            CreateMap<UsuarioAddViewModel, Usuario>();
-            CreateMap<UsuarioUpdateViewModel, Usuario>()
+            CreateMap<Amostra, AmostraDto>();
+            CreateMap<AmostraAddViewModel, Amostra>();
+            CreateMap<AmostraUpdateViewModel, Amostra>()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));
         }
     }
