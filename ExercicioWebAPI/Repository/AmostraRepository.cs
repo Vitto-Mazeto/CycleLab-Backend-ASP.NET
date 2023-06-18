@@ -1,5 +1,4 @@
 ﻿using ExercicioWebAPI.Context;
-using ExercicioWebAPI.Models.DTOs;
 using ExercicioWebAPI.Models.Entities;
 using ExercicioWebAPI.Repository.Interfaces;
 using Microsoft.EntityFrameworkCore;

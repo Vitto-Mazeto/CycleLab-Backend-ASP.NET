@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace ExercicioWebAPI.Models.DTOs
+namespace ExercicioWebAPI.DTOs.ViewModels
 {
-    public class UserRegisterRequest
+    public class UserRegisterViewModel
     {
         [Required(ErrorMessage = "O campo {6} é obrigatório")]
         [EmailAddress(ErrorMessage = "O campo {6} é inválido")]

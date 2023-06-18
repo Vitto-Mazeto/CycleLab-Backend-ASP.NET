@@ -1,4 +1,4 @@
-﻿namespace ExercicioWebAPI.Models.ViewModels
+﻿namespace ExercicioWebAPI.DTOs.ViewModels
 {
     public class AmostraAddViewModel
     {

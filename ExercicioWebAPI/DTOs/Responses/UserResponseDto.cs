@@ -1,4 +1,4 @@
-﻿namespace ExercicioWebAPI.Models.DTOs
+﻿namespace ExercicioWebAPI.DTOs.Responses
 {
     public class UserResponseDto
     {

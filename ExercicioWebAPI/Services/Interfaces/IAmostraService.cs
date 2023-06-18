@@ -1,6 +1,6 @@
-﻿using ExercicioWebAPI.Models.DTOs;
+﻿using ExercicioWebAPI.DTOs.Responses;
+using ExercicioWebAPI.DTOs.ViewModels;
 using ExercicioWebAPI.Models.Entities;
-using ExercicioWebAPI.Models.ViewModels;
 
 namespace ExercicioWebAPI.Services.Interfaces
 {

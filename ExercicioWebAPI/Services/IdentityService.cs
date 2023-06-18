@@ -1,5 +1,6 @@
 ﻿using ExercicioWebAPI.Configurations;
-using ExercicioWebAPI.Models.DTOs;
+using ExercicioWebAPI.DTOs.Responses;
+using ExercicioWebAPI.DTOs.ViewModels;
 using ExercicioWebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -24,7 +25,7 @@ namespace ExercicioWebAPI.Services
             _jwtOptions = jwtOptions.Value;
         }
 
-        public async Task<UserRegisterResponse> RegisterUser(UserRegisterRequest usuarioCadastro)
+        public async Task<UserRegisterResponse> RegisterUser(UserRegisterViewModel usuarioCadastro)
         {
             var identityUser = new IdentityUser
             {
@@ -55,7 +56,7 @@ namespace ExercicioWebAPI.Services
             return usuarioCadastroResponse;
         }
 
-        public async Task<UserLoginResponse> Login(UserLoginRequest usuarioLogin)
+        public async Task<UserLoginResponse> Login(UserLoginViewModel usuarioLogin)
         {
             var result = await _signInManager.PasswordSignInAsync(usuarioLogin.Email, usuarioLogin.Senha, false, true);
             if (result.Succeeded)

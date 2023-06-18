@@ -1,6 +1,6 @@
 ﻿using System.Text.Json.Serialization;
 
-namespace ExercicioWebAPI.Models.DTOs
+namespace ExercicioWebAPI.DTOs.Responses
 {
     public class UserLoginResponse
     {
@@ -11,7 +11,7 @@ namespace ExercicioWebAPI.Models.DTOs
 
         [JsonIgnore(Condition = JsonIgnoreCondition.WhenWritingNull)]
         public DateTime? DataExpiracao { get; private set; }
-        public List<string> Erros { get ; private set; }
+        public List<string> Erros { get; private set; }
 
         public UserLoginResponse() => Erros = new List<string>();
 
@@ -27,7 +27,7 @@ namespace ExercicioWebAPI.Models.DTOs
         public void AdicionarErro(string erro) =>
             Erros.Add(erro);
 
-        public void AdicionarErros(IEnumerable<string> erros) => 
+        public void AdicionarErros(IEnumerable<string> erros) =>
             Erros.AddRange(erros);
     }
 }

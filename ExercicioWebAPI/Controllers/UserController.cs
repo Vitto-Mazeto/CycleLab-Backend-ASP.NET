@@ -1,4 +1,5 @@
-﻿using ExercicioWebAPI.Models.DTOs;
+﻿using ExercicioWebAPI.DTOs.Responses;
+using ExercicioWebAPI.DTOs.ViewModels;
 using ExercicioWebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
@@ -13,7 +14,7 @@ namespace ExercicioWebAPI.Controllers
             _identityService = identityService;
 
         [HttpPost("cadastro")]
-        public async Task<ActionResult<UserRegisterResponse>> Cadastrar(UserRegisterRequest usuarioCadastro)
+        public async Task<ActionResult<UserRegisterResponse>> Cadastrar(UserRegisterViewModel usuarioCadastro)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
@@ -30,7 +31,7 @@ namespace ExercicioWebAPI.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<UserRegisterResponse>> Login(UserLoginRequest usuarioLogin)
+        public async Task<ActionResult<UserRegisterResponse>> Login(UserLoginViewModel usuarioLogin)
         {
             if (!ModelState.IsValid)
                 return BadRequest();
