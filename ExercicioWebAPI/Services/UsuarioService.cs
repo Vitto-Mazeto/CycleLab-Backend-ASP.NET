@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ExercicioWebAPI.Models.DTOs;
 using ExercicioWebAPI.Models.Entities;
+using ExercicioWebAPI.Models.ViewModels;
 using ExercicioWebAPI.Repository.Interfaces;
 using ExercicioWebAPI.Services.Interfaces;
 

@@ -1,5 +1,6 @@
-﻿using ExercicioWebAPI.Models.DTOs;
+﻿using ExercicioWebAPI.Models.ViewModels;
 using ExercicioWebAPI.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExercicioWebAPI.Controllers

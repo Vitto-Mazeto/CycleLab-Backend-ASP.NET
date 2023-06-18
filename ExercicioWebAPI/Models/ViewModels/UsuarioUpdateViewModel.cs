@@ -1,4 +1,4 @@
-﻿namespace ExercicioWebAPI.Models.DTOs
+﻿namespace ExercicioWebAPI.Models.ViewModels
 {
     public class UsuarioUpdateViewModel
     {
