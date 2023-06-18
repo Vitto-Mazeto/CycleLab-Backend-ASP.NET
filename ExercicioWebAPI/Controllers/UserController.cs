@@ -1,5 +1,6 @@
 ﻿using ExercicioWebAPI.Models.DTOs;
 using ExercicioWebAPI.Services.Interfaces;
+using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ExercicioWebAPI.Controllers
@@ -16,6 +17,8 @@ namespace ExercicioWebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest();
+
+            var role = usuarioCadastro.IsAdmin ? "ADMIN" : "USER";
 
             var resultado = await _identityService.RegisterUser(usuarioCadastro);
             if (resultado.Sucesso)
@@ -37,6 +40,14 @@ namespace ExercicioWebAPI.Controllers
                 return Ok(resultado);
 
             return Unauthorized(resultado);
+        }
+
+        [HttpGet("usuarios")]
+        public async Task<ActionResult<IEnumerable<UserResponseDto>>> GetUsersWithRoles()
+        {
+            var usersWithRoles = await _identityService.GetUsersWithRolesAsync();
+
+            return Ok(usersWithRoles);
         }
     }
 }

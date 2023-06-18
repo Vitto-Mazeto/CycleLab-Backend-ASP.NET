@@ -6,6 +6,7 @@ namespace ExercicioWebAPI.Services.Interfaces
     {
         Task<UserRegisterResponse> RegisterUser(UserRegisterRequest userRegister);
         Task<UserLoginResponse> Login(UserLoginRequest userLogin);
+        Task<IEnumerable<UserResponseDto>> GetUsersWithRolesAsync();
 
     }
 }

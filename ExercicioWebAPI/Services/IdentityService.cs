@@ -2,6 +2,7 @@
 using ExercicioWebAPI.Models.DTOs;
 using ExercicioWebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Options;
 using System.IdentityModel.Tokens.Jwt;
 using System.Security.Claims;
@@ -35,7 +36,15 @@ namespace ExercicioWebAPI.Services
             var result = await _userManager.CreateAsync(identityUser, usuarioCadastro.Senha);
             if (result.Succeeded)
             {
-                await _userManager.AddToRoleAsync(identityUser, "ADMIN");
+                if (usuarioCadastro.IsAdmin)
+                {
+                    await _userManager.AddToRoleAsync(identityUser, "ADMIN");
+                }
+                else
+                {
+                    await _userManager.AddToRoleAsync(identityUser, "USER");
+                }
+
                 await _userManager.SetLockoutEnabledAsync(identityUser, false);
             }
 
@@ -66,6 +75,28 @@ namespace ExercicioWebAPI.Services
             }
 
             return usuarioLoginResponse;
+        }
+
+        public async Task<IEnumerable<UserResponseDto>> GetUsersWithRolesAsync()
+        {
+            var users = await _userManager.Users.ToListAsync();
+
+            var usersWithRoles = new List<UserResponseDto>();
+
+            foreach (var user in users)
+            {
+                var roles = await _userManager.GetRolesAsync(user);
+
+                var userWithRole = new UserResponseDto
+                {
+                    Login = user.UserName,
+                    Roles = roles.ToList()
+                };
+
+                usersWithRoles.Add(userWithRole);
+            }
+
+            return usersWithRoles;
         }
 
         private async Task<UserLoginResponse> GerarToken(string email)

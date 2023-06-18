@@ -18,5 +18,9 @@ namespace ExercicioWebAPI.Models.DTOs
 
         public string SenhaConfirmacao { get; set; }
 
+        [Required]
+        public bool IsAdmin { get; set; }
+
+
     }
 }
