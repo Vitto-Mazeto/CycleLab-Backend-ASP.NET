@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExercicioWebAPI.Controllers
 {
+    [Authorize]
     [ApiController]
     [Route("api/[controller]")]
     public class UsuarioController : ControllerBase
