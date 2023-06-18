@@ -99,6 +99,45 @@ namespace ExercicioWebAPI.Services
             return usersWithRoles;
         }
 
+        public async Task<bool> AlterarPermissaoUsuarioAsync(string login)
+        {
+            var user = await _userManager.FindByNameAsync(login);
+
+            if (user == null)
+            {
+                throw new ArgumentException("Usuário não encontrado");
+            }
+
+            var isAdmin = await _userManager.IsInRoleAsync(user, "ADMIN");
+
+            if (isAdmin)
+            {
+                await _userManager.RemoveFromRoleAsync(user, "ADMIN");
+                await _userManager.AddToRoleAsync(user, "USER");
+            }
+            else
+            {
+                await _userManager.RemoveFromRoleAsync(user, "USER");
+                await _userManager.AddToRoleAsync(user, "ADMIN");
+            }
+
+            return true;
+        }
+
+        public async Task<bool> RemoverUsuarioAsync(string login)
+        {
+            var user = await _userManager.FindByNameAsync(login);
+
+            if (user == null)
+            {
+                throw new ArgumentException("Usuário não encontrado");
+            }
+
+            var result = await _userManager.DeleteAsync(user);
+
+            return result.Succeeded;
+        }
+
         private async Task<UserLoginResponse> GerarToken(string email)
         {
             var user = await _userManager.FindByEmailAsync(email);

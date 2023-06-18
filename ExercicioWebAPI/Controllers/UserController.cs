@@ -49,5 +49,34 @@ namespace ExercicioWebAPI.Controllers
 
             return Ok(usersWithRoles);
         }
+
+        [HttpPut("usuarios/{login}/alterar-permissao")]
+        public async Task<IActionResult> AlterarPermissaoUsuario(string login)
+        {
+            try
+            {
+                await _identityService.AlterarPermissaoUsuarioAsync(login);
+                return NoContent();
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
+        [HttpDelete("usuarios/{login}")]
+        public async Task<IActionResult> RemoverUsuario(string login)
+        {
+            try
+            {
+                await _identityService.RemoverUsuarioAsync(login);
+                return NoContent();
+            }
+            catch (ArgumentException ex)
+            {
+                return NotFound(ex.Message);
+            }
+        }
+
     }
 }
