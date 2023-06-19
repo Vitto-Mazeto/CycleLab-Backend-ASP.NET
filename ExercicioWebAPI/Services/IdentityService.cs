@@ -1,4 +1,5 @@
-﻿using ExercicioWebAPI.DTOs.Responses;
+﻿using AutoMapper;
+using ExercicioWebAPI.DTOs.Responses;
 using ExercicioWebAPI.DTOs.ViewModels;
 using ExercicioWebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
@@ -11,41 +12,29 @@ namespace ExercicioWebAPI.Services
         private readonly SignInManager<IdentityUser> _signInManager;
         private readonly UserManager<IdentityUser> _userManager;
         private readonly ITokenService _tokenService;
+        private readonly IMapper _mapper;
 
-        public IdentityService(SignInManager<IdentityUser> signInManager,
-                               UserManager<IdentityUser> userManager,
-                               ITokenService tokenService)
+        public IdentityService(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, ITokenService tokenService, IMapper mapper)
         {
             _signInManager = signInManager;
             _userManager = userManager;
             _tokenService = tokenService;
+            _mapper = mapper;
         }
 
         public async Task<UserRegisterResponse> RegisterUser(UserRegisterViewModel usuarioCadastro)
         {
-            var identityUser = new IdentityUser
-            {
-                UserName = usuarioCadastro.Email,
-                Email = usuarioCadastro.Email,
-                EmailConfirmed = true
-            };
+            var identityUser = _mapper.Map<IdentityUser>(usuarioCadastro);
 
             var result = await _userManager.CreateAsync(identityUser, usuarioCadastro.Senha);
             if (result.Succeeded)
             {
-                if (usuarioCadastro.IsAdmin)
-                {
-                    await _userManager.AddToRoleAsync(identityUser, "ADMIN");
-                }
-                else
-                {
-                    await _userManager.AddToRoleAsync(identityUser, "USER");
-                }
-
+                var roleName = usuarioCadastro.IsAdmin ? "ADMIN" : "USER";
+                await _userManager.AddToRoleAsync(identityUser, roleName);
                 await _userManager.SetLockoutEnabledAsync(identityUser, false);
             }
 
-            var usuarioCadastroResponse = new UserRegisterResponse(result.Succeeded);
+            var usuarioCadastroResponse = _mapper.Map<UserRegisterResponse>(result);
             if (!result.Succeeded && result.Errors.Count() > 0)
                 usuarioCadastroResponse.AdicionarErros(result.Errors.Select(r => r.Description));
 
@@ -62,7 +51,7 @@ namespace ExercicioWebAPI.Services
                 return new UserLoginResponse(true, tokenResponse.Token, tokenResponse.DataExpiracao);
             }
 
-            var usuarioLoginResponse = new UserLoginResponse(result.Succeeded);
+            var usuarioLoginResponse = _mapper.Map<UserLoginResponse>(result);
             if (!result.Succeeded)
             {
                 if (result.IsLockedOut)
