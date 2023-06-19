@@ -38,6 +38,7 @@ builder.Services.AddAutoMapper(typeof(Program));
 // Configure repositories
 builder.Services.AddScoped<IBaseRepository, BaseRepository>();
 builder.Services.AddScoped<IAmostraRepository, AmostraRepository>();
+builder.Services.AddScoped<IIdentityRepository, IdentityRepository>();
 
 // Configure services
 builder.Services.AddScoped<IAmostraService, AmostraService>();

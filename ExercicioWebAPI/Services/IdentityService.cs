@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using ExercicioWebAPI.DTOs.Responses;
 using ExercicioWebAPI.DTOs.ViewModels;
+using ExercicioWebAPI.Repository.Interfaces;
 using ExercicioWebAPI.Services.Interfaces;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -10,28 +11,32 @@ namespace ExercicioWebAPI.Services
     public class IdentityService : IIdentityService
     {
         private readonly SignInManager<IdentityUser> _signInManager;
-        private readonly UserManager<IdentityUser> _userManager;
         private readonly ITokenService _tokenService;
         private readonly IMapper _mapper;
+        private readonly IIdentityRepository _identityRepository;
 
-        public IdentityService(SignInManager<IdentityUser> signInManager, UserManager<IdentityUser> userManager, ITokenService tokenService, IMapper mapper)
+        public IdentityService(
+            SignInManager<IdentityUser> signInManager,
+            ITokenService tokenService,
+            IMapper mapper,
+            IIdentityRepository identityRepository)
         {
             _signInManager = signInManager;
-            _userManager = userManager;
             _tokenService = tokenService;
             _mapper = mapper;
+            _identityRepository = identityRepository;
         }
 
         public async Task<UserRegisterResponse> RegisterUser(UserRegisterViewModel usuarioCadastro)
         {
             var identityUser = _mapper.Map<IdentityUser>(usuarioCadastro);
 
-            var result = await _userManager.CreateAsync(identityUser, usuarioCadastro.Senha);
+            var result = await _identityRepository.CreateUserAsync(identityUser, usuarioCadastro.Senha);
             if (result.Succeeded)
             {
                 var roleName = usuarioCadastro.IsAdmin ? "ADMIN" : "USER";
-                await _userManager.AddToRoleAsync(identityUser, roleName);
-                await _userManager.SetLockoutEnabledAsync(identityUser, false);
+                await _identityRepository.AddToRoleAsync(identityUser, roleName);
+                await _identityRepository.SetLockoutEnabledAsync(identityUser, false);
             }
 
             var usuarioCadastroResponse = _mapper.Map<UserRegisterResponse>(result);
@@ -46,7 +51,7 @@ namespace ExercicioWebAPI.Services
             var result = await _signInManager.PasswordSignInAsync(usuarioLogin.Email, usuarioLogin.Senha, false, true);
             if (result.Succeeded)
             {
-                var user = await _userManager.FindByEmailAsync(usuarioLogin.Email);
+                var user = await _identityRepository.FindByEmailAsync(usuarioLogin.Email);
                 var tokenResponse = await _tokenService.GerarToken(user);
                 return new UserLoginResponse(true, tokenResponse.Token, tokenResponse.DataExpiracao);
             }
@@ -69,12 +74,11 @@ namespace ExercicioWebAPI.Services
 
         public async Task<IEnumerable<UserResponseDto>> GetUsersWithRolesAsync()
         {
-            var users = await _userManager.Users.ToListAsync();
+            var users = await _identityRepository.GetUsersAsync();
 
-            // Antes estava iterando usando um for, agora usei LINQ
             var usersWithRoles = users.Select(async user =>
             {
-                var roles = await _userManager.GetRolesAsync(user);
+                var roles = await _identityRepository.GetRolesAsync(user);
 
                 return new UserResponseDto
                 {
@@ -88,24 +92,24 @@ namespace ExercicioWebAPI.Services
 
         public async Task<bool> AlterarPermissaoUsuarioAsync(string login)
         {
-            var user = await _userManager.FindByNameAsync(login);
+            var user = await _identityRepository.FindByEmailAsync(login);
 
             if (user == null)
             {
                 throw new ArgumentException("Usuário não encontrado");
             }
 
-            var isAdmin = await _userManager.IsInRoleAsync(user, "ADMIN");
+            var isAdmin = await _identityRepository.IsInRoleAsync(user, "ADMIN");
 
             if (isAdmin)
             {
-                await _userManager.RemoveFromRoleAsync(user, "ADMIN");
-                await _userManager.AddToRoleAsync(user, "USER");
+                await _identityRepository.RemoveFromRoleAsync(user, "ADMIN");
+                await _identityRepository.AddToRoleAsync(user, "USER");
             }
             else
             {
-                await _userManager.RemoveFromRoleAsync(user, "USER");
-                await _userManager.AddToRoleAsync(user, "ADMIN");
+                await _identityRepository.RemoveFromRoleAsync(user, "USER");
+                await _identityRepository.AddToRoleAsync(user, "ADMIN");
             }
 
             return true;
@@ -113,14 +117,14 @@ namespace ExercicioWebAPI.Services
 
         public async Task<bool> RemoverUsuarioAsync(string login)
         {
-            var user = await _userManager.FindByNameAsync(login);
+            var user = await _identityRepository.FindByEmailAsync(login);
 
             if (user == null)
             {
                 throw new ArgumentException("Usuário não encontrado");
             }
 
-            var result = await _userManager.DeleteAsync(user);
+            var result = await _identityRepository.DeleteUserAsync(user);
 
             return result.Succeeded;
         }
