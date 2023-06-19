@@ -50,6 +50,7 @@ namespace ExercicioWebAPI.Controllers
             return Ok("Amostra adicionada com sucesso!");
         }
 
+        [Authorize(Roles = "ADMIN")]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, AmostraUpdateViewModel amostra)
         {
@@ -60,6 +61,7 @@ namespace ExercicioWebAPI.Controllers
             return Ok("Amostra atualizada com sucesso!");
         }
 
+        [Authorize(Roles = "ADMIN")]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {

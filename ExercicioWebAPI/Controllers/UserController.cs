@@ -1,8 +1,10 @@
 ﻿using ExercicioWebAPI.DTOs.Responses;
 using ExercicioWebAPI.DTOs.ViewModels;
 using ExercicioWebAPI.Services.Interfaces;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
+using System.Data;
 
 namespace ExercicioWebAPI.Controllers
 {
@@ -18,8 +20,6 @@ namespace ExercicioWebAPI.Controllers
         {
             if (!ModelState.IsValid)
                 return BadRequest();
-
-            var role = usuarioCadastro.IsAdmin ? "ADMIN" : "USER";
 
             var resultado = await _identityService.RegisterUser(usuarioCadastro);
             if (resultado.Sucesso)
@@ -51,6 +51,7 @@ namespace ExercicioWebAPI.Controllers
             return Ok(usersWithRoles);
         }
 
+        [Authorize(Roles = "ADMIN")]
         [HttpPut("usuarios/{login}/alterar-permissao")]
         public async Task<IActionResult> AlterarPermissaoUsuario(string login)
         {
@@ -65,6 +66,7 @@ namespace ExercicioWebAPI.Controllers
             }
         }
 
+        [Authorize(Roles = "ADMIN")]
         [HttpDelete("usuarios/{login}")]
         public async Task<IActionResult> RemoverUsuario(string login)
         {
