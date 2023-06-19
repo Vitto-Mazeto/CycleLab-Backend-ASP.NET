@@ -71,22 +71,19 @@ namespace ExercicioWebAPI.Services
         {
             var users = await _userManager.Users.ToListAsync();
 
-            var usersWithRoles = new List<UserResponseDto>();
-
-            foreach (var user in users)
+            // Antes estava iterando usando um for, agora usei LINQ
+            var usersWithRoles = users.Select(async user =>
             {
                 var roles = await _userManager.GetRolesAsync(user);
 
-                var userWithRole = new UserResponseDto
+                return new UserResponseDto
                 {
                     Login = user.UserName,
                     Roles = roles.ToList()
                 };
+            });
 
-                usersWithRoles.Add(userWithRole);
-            }
-
-            return usersWithRoles;
+            return await Task.WhenAll(usersWithRoles);
         }
 
         public async Task<bool> AlterarPermissaoUsuarioAsync(string login)
