@@ -7,8 +7,8 @@ namespace Services.Interfaces
     {
         Task<IEnumerable<AmostraDto>> GetAmostrasAsync();
         Task<AmostraDto> GetAmostraByIdAsync(int id);
-        Task AddAmostraAsync(AmostraAddViewModel usuario);
-        Task UpdateAmostraAsync(int id, AmostraUpdateViewModel usuario);
+        Task AddAmostraAsync(AmostraAddViewModel amostra);
+        Task UpdateAmostraAsync(int id, AmostraUpdateViewModel amostra);
         Task DeleteAmostraAsync(int id);
     }
 }
