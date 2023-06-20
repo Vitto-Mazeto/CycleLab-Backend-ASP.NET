@@ -110,3 +110,4 @@ C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net
 C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\Services.pdb
 C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\Database.pdb
 C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\Repository.pdb
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\obj\Debug\net6.0\ExercicioWebAPI.MvcApplicationPartsAssemblyInfo.cs

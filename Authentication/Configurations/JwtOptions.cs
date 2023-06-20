@@ -2,6 +2,7 @@
 
 namespace ExercicioWebAPI.Configurations
 {
+    //Classe usada junto com o IOptions para configurar essas opções no token
     public class JwtOptions
     {
         public string Issuer { get; set; }

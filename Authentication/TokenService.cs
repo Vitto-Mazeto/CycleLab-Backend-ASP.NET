@@ -15,6 +15,7 @@ namespace Authentication
 
         public TokenService(IOptions<JwtOptions> jwtOptions, UserManager<IdentityUser> userManager)
         {
+            // Dessa forma consigo acessar os valores salvos no appsettings.json
             _jwtOptions = jwtOptions.Value;
             _userManager = userManager;
         }
@@ -44,7 +45,7 @@ namespace Authentication
             var roles = await _userManager.GetRolesAsync(user);
 
             //Claims padrões para ter no token
-            claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.Id));
+            claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.Id)); 
             claims.Add(new Claim(JwtRegisteredClaimNames.Email, user.Email));
             claims.Add(new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()));
             claims.Add(new Claim(JwtRegisteredClaimNames.Nbf, DateTime.Now.ToString()));

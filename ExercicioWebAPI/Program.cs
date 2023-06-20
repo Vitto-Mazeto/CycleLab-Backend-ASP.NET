@@ -68,9 +68,9 @@ builder.Services.AddSwaggerGen(options =>
 {
     options.AddSecurityDefinition("Bearer", new OpenApiSecurityScheme
     {
-        Description = @"JWT Authorization header using the Bearer scheme. 
-                                Enter 'Bearer' [space] and then your token in the text input below. 
-                                Example: 'Bearer 12345abcdef'",
+        Description = @"Cabeçalho de autorização JWT usando o esquema Bearer.
+                        Insira 'Bearer' [espaço] e, em seguida, seu token no campo de texto abaixo.
+                        Exemplo: 'Bearer 12345abcdef'",
         Name = "Authorization",
         In = ParameterLocation.Header,
         Type = SecuritySchemeType.ApiKey,
@@ -143,7 +143,8 @@ builder.Services.AddAuthentication(options =>
 });
 
 var app = builder.Build();
-// Configure the HTTP request pipeline.
+
+
 if (app.Environment.IsDevelopment())
 {
     app.UseSwagger();
