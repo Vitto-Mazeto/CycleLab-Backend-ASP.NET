@@ -6,6 +6,7 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace ExercicioWebAPI.Controllers
 {
+    [Route("[controller]")]
     public class UserController : ControllerBase
     {
         private IIdentityService _identityService;
@@ -41,6 +42,7 @@ namespace ExercicioWebAPI.Controllers
             return Unauthorized(resultado);
         }
 
+        [Authorize(Roles = "ADMIN, USER")]
         [HttpGet("usuarios")]
         public async Task<ActionResult<IEnumerable<UserResponseDto>>> GetUsersWithRoles()
         {

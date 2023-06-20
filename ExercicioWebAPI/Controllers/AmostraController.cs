@@ -7,7 +7,7 @@ namespace ExercicioWebAPI.Controllers
 {
     [Authorize]
     [ApiController]
-    [Route("api/[controller]")]
+    [Route("[controller]")]
     public class AmostraController : ControllerBase
     {
         private readonly IAmostraService _service;
