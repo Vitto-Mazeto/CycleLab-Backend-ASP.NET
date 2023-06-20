@@ -23,11 +23,6 @@ namespace Repository
             await _userManager.AddToRoleAsync(user, role);
         }
 
-        public async Task SetLockoutEnabledAsync(IdentityUser user, bool enabled)
-        {
-            await _userManager.SetLockoutEnabledAsync(user, enabled);
-        }
-
         public async Task<IdentityUser> FindByEmailAsync(string email)
         {
             return await _userManager.FindByEmailAsync(email);

@@ -35,7 +35,6 @@ namespace Authentication
             {
                 var roleName = userRegister.IsAdmin ? "ADMIN" : "USER";
                 await _identityRepository.AddToRoleAsync(identityUser, roleName);
-                await _identityRepository.SetLockoutEnabledAsync(identityUser, false);
             }
 
             var userRegisterResponse = _mapper.Map<UserRegisterResponse>(result);

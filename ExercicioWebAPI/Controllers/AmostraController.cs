@@ -1,7 +1,7 @@
 ﻿using DTOs.ViewModels;
-using Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Services.Interfaces;
 
 namespace ExercicioWebAPI.Controllers
 {
@@ -55,6 +55,9 @@ namespace ExercicioWebAPI.Controllers
         {
             if (id <= 0) return BadRequest("Amostra não informada");
 
+            var amostraExistente = await _service.GetAmostraByIdAsync(id);
+            if (amostraExistente == null) return NotFound("Amostra não encontrada");
+
             await _service.UpdateAmostraAsync(id, amostra);
 
             return Ok("Amostra atualizada com sucesso!");
@@ -65,6 +68,9 @@ namespace ExercicioWebAPI.Controllers
         public async Task<IActionResult> Delete(int id)
         {
             if (id <= 0) return BadRequest("Amostra inválida");
+
+            var amostraExistente = await _service.GetAmostraByIdAsync(id);
+            if (amostraExistente == null) return NotFound("Amostra não encontrada");
 
             await _service.DeleteAmostraAsync(id);
 

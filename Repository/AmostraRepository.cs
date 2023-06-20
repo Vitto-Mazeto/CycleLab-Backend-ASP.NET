@@ -8,14 +8,15 @@ namespace Repository
     public class AmostraRepository : BaseRepository, IAmostraRepository
     {
         private readonly ExcWebAPIContext _context;
+
         public AmostraRepository(ExcWebAPIContext context) : base(context)
         {
             _context = context;
         }
+
         public async Task<IEnumerable<Amostra>> GetAmostrasAsync()
         {
-            return await _context.Amostras
-                         .ToListAsync();
+            return await _context.Amostras.ToListAsync();
         }
 
         public async Task<Amostra> GetAmostraByIdAsync(int id)
@@ -23,6 +24,5 @@ namespace Repository
             return await _context.Amostras.Where(x => x.Id == id)
                 .FirstOrDefaultAsync();
         }
-
     }
 }
