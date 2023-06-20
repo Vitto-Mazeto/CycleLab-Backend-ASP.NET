@@ -62,7 +62,6 @@ C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\obj\Debug\net
 C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\obj\Debug\net6.0\ExercicioWebAPI.AssemblyInfoInputs.cache
 C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\obj\Debug\net6.0\ExercicioWebAPI.AssemblyInfo.cs
 C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\obj\Debug\net6.0\ExercicioWebAPI.csproj.CoreCompileInputs.cache
-C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\obj\Debug\net6.0\ExercicioWebAPI.MvcApplicationPartsAssemblyInfo.cs
 C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\obj\Debug\net6.0\ExercicioWebAPI.MvcApplicationPartsAssemblyInfo.cache
 C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\obj\Debug\net6.0\staticwebassets\msbuild.ExercicioWebAPI.Microsoft.AspNetCore.StaticWebAssets.props
 C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\obj\Debug\net6.0\staticwebassets\msbuild.build.ExercicioWebAPI.props
@@ -99,3 +98,15 @@ C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net
 C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Protocols.OpenIdConnect.dll
 C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\Microsoft.IdentityModel.Tokens.dll
 C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\System.IdentityModel.Tokens.Jwt.dll
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\Authentication.dll
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\Database.dll
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\Domain.dll
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\DTOs.dll
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\Repository.dll
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\Services.dll
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\Authentication.pdb
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\Domain.pdb
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\DTOs.pdb
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\Services.pdb
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\Database.pdb
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\ExercicioWebAPI\bin\Debug\net6.0\Repository.pdb

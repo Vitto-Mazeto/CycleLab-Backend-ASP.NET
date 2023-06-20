@@ -1,9 +1,9 @@
 using ExercicioWebAPI.Configurations;
-using ExercicioWebAPI.Context;
-using ExercicioWebAPI.Repository;
-using ExercicioWebAPI.Repository.Interfaces;
-using ExercicioWebAPI.Services;
-using ExercicioWebAPI.Services.Interfaces;
+using Database.Context;
+using Repository;
+using Repository.Interfaces;
+using Services;
+using Services.Interfaces;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
@@ -12,6 +12,9 @@ using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Text;
 using Microsoft.OpenApi.Models;
+using Authentication.Interfaces;
+using Authentication;
+using DTOs.Helpers;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -33,7 +36,8 @@ builder.Services.AddDefaultIdentity<IdentityUser>()
 builder.Services.AddScoped<IIdentityService, IdentityService>();
 
 // Configure AutoMapper
-builder.Services.AddAutoMapper(typeof(Program));
+builder.Services.AddAutoMapper(typeof(Program).Assembly, typeof(UserProfile).Assembly);
+
 
 // Configure repositories
 builder.Services.AddScoped<IBaseRepository, BaseRepository>();

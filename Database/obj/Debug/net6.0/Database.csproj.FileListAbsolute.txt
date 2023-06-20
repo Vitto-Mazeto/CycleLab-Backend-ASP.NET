@@ -1,0 +1,17 @@
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\Database\bin\Debug\net6.0\Database.deps.json
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\Database\bin\Debug\net6.0\Database.runtimeconfig.json
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\Database\bin\Debug\net6.0\Database.dll
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\Database\bin\Debug\net6.0\Database.pdb
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\Database\bin\Debug\net6.0\Domain.dll
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\Database\bin\Debug\net6.0\Domain.pdb
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\Database\obj\Debug\net6.0\Database.csproj.AssemblyReference.cache
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\Database\obj\Debug\net6.0\Database.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\Database\obj\Debug\net6.0\Database.AssemblyInfoInputs.cache
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\Database\obj\Debug\net6.0\Database.AssemblyInfo.cs
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\Database\obj\Debug\net6.0\Database.csproj.CoreCompileInputs.cache
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\Database\obj\Debug\net6.0\Database.csproj.CopyComplete
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\Database\obj\Debug\net6.0\Database.dll
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\Database\obj\Debug\net6.0\refint\Database.dll
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\Database\obj\Debug\net6.0\Database.pdb
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\Database\obj\Debug\net6.0\Database.genruntimeconfig.cache
+C:\Users\vitto.mazeto\source\repos\ExercicioWebAPI\Database\obj\Debug\net6.0\ref\Database.dll

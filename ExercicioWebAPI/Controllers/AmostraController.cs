@@ -1,6 +1,5 @@
-﻿using ExercicioWebAPI.DTOs.ViewModels;
-using ExercicioWebAPI.Models.Entities;
-using ExercicioWebAPI.Services.Interfaces;
+﻿using DTOs.ViewModels;
+using Services.Interfaces;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

@@ -1,10 +1,8 @@
-﻿using ExercicioWebAPI.DTOs.Responses;
-using ExercicioWebAPI.DTOs.ViewModels;
-using ExercicioWebAPI.Services.Interfaces;
+﻿using DTOs.Responses;
+using DTOs.ViewModels;
+using Authentication.Interfaces;
 using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using System.Data;
 
 namespace ExercicioWebAPI.Controllers
 {
