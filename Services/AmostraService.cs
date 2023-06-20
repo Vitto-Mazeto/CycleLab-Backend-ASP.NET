@@ -27,13 +27,13 @@ namespace Services
 
         public async Task<AmostraDto> GetAmostraByIdAsync(int id)
         {
-            var usuario = await _repository.GetAmostraByIdAsync(id);
-            return _mapper.Map<AmostraDto>(usuario);
+            var amostra = await _repository.GetAmostraByIdAsync(id);
+            return _mapper.Map<AmostraDto>(amostra);
         }
 
-        public async Task AddAmostraAsync(AmostraAddViewModel usuario)
+        public async Task AddAmostraAsync(AmostraAddViewModel amostra)
         {
-            var amostraEntity = _mapper.Map<Amostra>(usuario);
+            var amostraEntity = _mapper.Map<Amostra>(amostra);
             _repository.Add(amostraEntity);
             await _repository.SaveChangesAsync();
         }
