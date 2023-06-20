@@ -55,7 +55,7 @@ namespace ExercicioWebAPI.Controllers
         {
             try
             {
-                await _identityService.AlterarPermissaoUsuarioAsync(login);
+                await _identityService.ChangeUserPermissionAsync(login);
                 return NoContent();
             }
             catch (ArgumentException ex)
@@ -70,7 +70,7 @@ namespace ExercicioWebAPI.Controllers
         {
             try
             {
-                await _identityService.RemoverUsuarioAsync(login);
+                await _identityService.RemoveUserAsync(login);
                 return NoContent();
             }
             catch (ArgumentException ex)

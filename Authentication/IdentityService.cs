@@ -4,7 +4,6 @@ using DTOs.ViewModels;
 using Repository.Interfaces;
 using Authentication.Interfaces;
 using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
 
 namespace Authentication
 {
@@ -27,49 +26,49 @@ namespace Authentication
             _identityRepository = identityRepository;
         }
 
-        public async Task<UserRegisterResponse> RegisterUser(UserRegisterViewModel usuarioCadastro)
+        public async Task<UserRegisterResponse> RegisterUser(UserRegisterViewModel userRegister)
         {
-            var identityUser = _mapper.Map<IdentityUser>(usuarioCadastro);
+            var identityUser = _mapper.Map<IdentityUser>(userRegister);
 
-            var result = await _identityRepository.CreateUserAsync(identityUser, usuarioCadastro.Senha);
+            var result = await _identityRepository.CreateUserAsync(identityUser, userRegister.Senha);
             if (result.Succeeded)
             {
-                var roleName = usuarioCadastro.IsAdmin ? "ADMIN" : "USER";
+                var roleName = userRegister.IsAdmin ? "ADMIN" : "USER";
                 await _identityRepository.AddToRoleAsync(identityUser, roleName);
                 await _identityRepository.SetLockoutEnabledAsync(identityUser, false);
             }
 
-            var usuarioCadastroResponse = _mapper.Map<UserRegisterResponse>(result);
+            var userRegisterResponse = _mapper.Map<UserRegisterResponse>(result);
             if (!result.Succeeded && result.Errors.Count() > 0)
-                usuarioCadastroResponse.AdicionarErros(result.Errors.Select(r => r.Description));
+                userRegisterResponse.AdicionarErros(result.Errors.Select(r => r.Description));
 
-            return usuarioCadastroResponse;
+            return userRegisterResponse;
         }
 
-        public async Task<UserLoginResponse> Login(UserLoginViewModel usuarioLogin)
+        public async Task<UserLoginResponse> Login(UserLoginViewModel userLogin)
         {
-            var result = await _signInManager.PasswordSignInAsync(usuarioLogin.Email, usuarioLogin.Senha, false, true);
+            var result = await _signInManager.PasswordSignInAsync(userLogin.Email, userLogin.Senha, false, true);
             if (result.Succeeded)
             {
-                var user = await _identityRepository.FindByEmailAsync(usuarioLogin.Email);
-                var tokenResponse = await _tokenService.GerarToken(user);
+                var user = await _identityRepository.FindByEmailAsync(userLogin.Email);
+                var tokenResponse = await _tokenService.GenerateToken(user);
                 return new UserLoginResponse(true, tokenResponse.Token, tokenResponse.DataExpiracao);
             }
 
-            var usuarioLoginResponse = _mapper.Map<UserLoginResponse>(result);
+            var userLoginResponse = _mapper.Map<UserLoginResponse>(result);
             if (!result.Succeeded)
             {
                 if (result.IsLockedOut)
-                    usuarioLoginResponse.AdicionarErro("Essa conta está bloqueada");
+                    userLoginResponse.AddError("Essa conta está bloqueada");
                 else if (result.IsNotAllowed)
-                    usuarioLoginResponse.AdicionarErro("Essa conta não tem permissão para fazer login");
+                    userLoginResponse.AddError("Essa conta não tem permissão para fazer login");
                 else if (result.RequiresTwoFactor)
-                    usuarioLoginResponse.AdicionarErro("É necessário confirmar o login no seu segundo fator de autenticação");
+                    userLoginResponse.AddError("É necessário confirmar o login no seu segundo fator de autenticação");
                 else
-                    usuarioLoginResponse.AdicionarErro("Usuário ou senha estão incorretos");
+                    userLoginResponse.AddError("Usuário ou senha estão incorretos");
             }
 
-            return usuarioLoginResponse;
+            return userLoginResponse;
         }
 
         public async Task<IEnumerable<UserResponseDto>> GetUsersWithRolesAsync()
@@ -90,7 +89,7 @@ namespace Authentication
             return await Task.WhenAll(usersWithRoles);
         }
 
-        public async Task<bool> AlterarPermissaoUsuarioAsync(string login)
+        public async Task<bool> ChangeUserPermissionAsync(string login)
         {
             var user = await _identityRepository.FindByEmailAsync(login);
 
@@ -115,7 +114,7 @@ namespace Authentication
             return true;
         }
 
-        public async Task<bool> RemoverUsuarioAsync(string login)
+        public async Task<bool> RemoveUserAsync(string login)
         {
             var user = await _identityRepository.FindByEmailAsync(login);
 

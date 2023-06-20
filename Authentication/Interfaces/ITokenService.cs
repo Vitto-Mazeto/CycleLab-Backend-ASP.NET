@@ -5,6 +5,6 @@ namespace Authentication.Interfaces
 {
     public interface ITokenService
     {
-        Task<TokenResponseDto> GerarToken(IdentityUser user);
+        Task<TokenResponseDto> GenerateToken(IdentityUser user);
     }
 }

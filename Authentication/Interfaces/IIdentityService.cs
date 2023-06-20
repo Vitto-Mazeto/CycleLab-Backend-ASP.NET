@@ -8,8 +8,8 @@ namespace Authentication.Interfaces
         Task<UserRegisterResponse> RegisterUser(UserRegisterViewModel userRegister);
         Task<UserLoginResponse> Login(UserLoginViewModel userLogin);
         Task<IEnumerable<UserResponseDto>> GetUsersWithRolesAsync();
-        Task<bool> AlterarPermissaoUsuarioAsync(string login);
-        Task<bool> RemoverUsuarioAsync(string login);
+        Task<bool> ChangeUserPermissionAsync(string login);
+        Task<bool> RemoveUserAsync(string login);
 
     }
 }

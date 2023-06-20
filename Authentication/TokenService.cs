@@ -19,9 +19,9 @@ namespace Authentication
             _userManager = userManager;
         }
 
-        public async Task<TokenResponseDto> GerarToken(IdentityUser user)
+        public async Task<TokenResponseDto> GenerateToken(IdentityUser user)
         {
-            var tokenClaims = await ObterClaims(user);
+            var tokenClaims = await GetClaims(user);
 
             var dataExpiracao = DateTime.Now.AddSeconds(_jwtOptions.Expiration);
 
@@ -38,7 +38,7 @@ namespace Authentication
             return new TokenResponseDto(token, dataExpiracao);
         }
 
-        private async Task<IList<Claim>> ObterClaims(IdentityUser user)
+        private async Task<IList<Claim>> GetClaims(IdentityUser user)
         {
             var claims = await _userManager.GetClaimsAsync(user);
             var roles = await _userManager.GetRolesAsync(user);
@@ -50,7 +50,7 @@ namespace Authentication
             claims.Add(new Claim(JwtRegisteredClaimNames.Nbf, DateTime.Now.ToString()));
             claims.Add(new Claim(JwtRegisteredClaimNames.Iat, DateTime.Now.ToString()));
 
-            //Papel do usuario
+            //Papéis do usuario
             foreach (var role in roles)
                 claims.Add(new Claim("role", role));
 
