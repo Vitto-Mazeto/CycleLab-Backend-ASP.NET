@@ -20,12 +20,6 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
-// Configure controllers with Newtonsoft.Json
-builder.Services.AddControllers().AddNewtonsoftJson(options =>
-{
-    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore;
-});
-
 // Configure Identity
 builder.Services.AddDefaultIdentity<IdentityUser>()
     .AddRoles<IdentityRole>()
