@@ -5,7 +5,7 @@ namespace DTOs.ViewModels
     public class UserLoginViewModel
     {
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
-        [EmailAddress(ErrorMessage = "O campo {0} [e inválido")]
+        [EmailAddress(ErrorMessage = "O campo {0} é inválido")]
         public string Email { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório")]
