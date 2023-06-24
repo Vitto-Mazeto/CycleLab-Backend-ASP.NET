@@ -21,34 +21,34 @@ namespace Services
 
         public async Task<IEnumerable<AmostraDto>> GetAmostrasAsync()
         {
-            var amostras = await _repository.GetAmostrasAsync();
+            IEnumerable<Amostra> amostras = await _repository.GetAmostrasAsync();
             return _mapper.Map<IEnumerable<AmostraDto>>(amostras);
         }
 
         public async Task<AmostraDto> GetAmostraByIdAsync(int id)
         {
-            var amostra = await _repository.GetAmostraByIdAsync(id);
+            Amostra amostra = await _repository.GetAmostraByIdAsync(id);
             return _mapper.Map<AmostraDto>(amostra);
         }
 
         public async Task AddAmostraAsync(AmostraAddViewModel amostra)
         {
-            var amostraEntity = _mapper.Map<Amostra>(amostra);
+            Amostra amostraEntity = _mapper.Map<Amostra>(amostra);
             _repository.Add(amostraEntity);
             await _repository.SaveChangesAsync();
         }
 
         public async Task UpdateAmostraAsync(int id, AmostraUpdateViewModel amostra)
         {
-            var amostraBanco = await _repository.GetAmostraByIdAsync(id);
-            var amostraEntity = _mapper.Map(amostra, amostraBanco);
+            Amostra amostraBanco = await _repository.GetAmostraByIdAsync(id);
+            Amostra amostraEntity = _mapper.Map(amostra, amostraBanco);
             _repository.Update(amostraEntity);
             await _repository.SaveChangesAsync();
         }
 
         public async Task DeleteAmostraAsync(int id)
         {
-            var amostra = await _repository.GetAmostraByIdAsync(id);
+            Amostra amostra = await _repository.GetAmostraByIdAsync(id);
             _repository.Delete(amostra);
             await _repository.SaveChangesAsync();
         }

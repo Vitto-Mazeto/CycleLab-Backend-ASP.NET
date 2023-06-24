@@ -22,11 +22,11 @@ namespace Authentication
 
         public async Task<TokenResponseDto> GenerateToken(IdentityUser user)
         {
-            var tokenClaims = await GetClaims(user);
+            IList<Claim> tokenClaims = await GetClaims(user);
 
-            var dataExpiracao = DateTime.Now.AddSeconds(_jwtOptions.Expiration);
+            DateTime dataExpiracao = DateTime.Now.AddSeconds(_jwtOptions.Expiration);
 
-            var jwt = new JwtSecurityToken(
+            JwtSecurityToken jwt = new JwtSecurityToken(
                 issuer: _jwtOptions.Issuer,
                 audience: _jwtOptions.Audience,
                 claims: tokenClaims,
@@ -34,15 +34,15 @@ namespace Authentication
                 expires: dataExpiracao,
                 signingCredentials: _jwtOptions.SigningCredentials);
 
-            var token = new JwtSecurityTokenHandler().WriteToken(jwt);
+            string token = new JwtSecurityTokenHandler().WriteToken(jwt);
 
             return new TokenResponseDto(token, dataExpiracao);
         }
 
         private async Task<IList<Claim>> GetClaims(IdentityUser user)
         {
-            var claims = await _userManager.GetClaimsAsync(user);
-            var roles = await _userManager.GetRolesAsync(user);
+            IList<Claim> claims = await _userManager.GetClaimsAsync(user);
+            IList<string> roles = await _userManager.GetRolesAsync(user);
 
             //Claims padrões para ter no token
             claims.Add(new Claim(JwtRegisteredClaimNames.Sub, user.Id)); 
@@ -52,7 +52,7 @@ namespace Authentication
             claims.Add(new Claim(JwtRegisteredClaimNames.Iat, DateTime.Now.ToString()));
 
             //Papéis do usuario
-            foreach (var role in roles)
+            foreach (string role in roles)
                 claims.Add(new Claim("role", role));
 
             return claims;

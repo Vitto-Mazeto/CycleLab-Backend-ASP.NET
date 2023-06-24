@@ -28,16 +28,16 @@ namespace Authentication
 
         public async Task<UserRegisterResponse> RegisterUser(UserRegisterViewModel userRegister)
         {
-            var identityUser = _mapper.Map<IdentityUser>(userRegister);
+            IdentityUser identityUser = _mapper.Map<IdentityUser>(userRegister);
 
-            var result = await _identityRepository.CreateUserAsync(identityUser, userRegister.Senha);
+            IdentityResult result = await _identityRepository.CreateUserAsync(identityUser, userRegister.Senha);
             if (result.Succeeded)
             {
-                var roleName = userRegister.IsAdmin ? "ADMIN" : "USER";
+                string roleName = userRegister.IsAdmin ? "ADMIN" : "USER";
                 await _identityRepository.AddToRoleAsync(identityUser, roleName);
             }
 
-            var userRegisterResponse = _mapper.Map<UserRegisterResponse>(result);
+            UserRegisterResponse userRegisterResponse = _mapper.Map<UserRegisterResponse>(result);
             if (!result.Succeeded && result.Errors.Count() > 0)
                 userRegisterResponse.AdicionarErros(result.Errors.Select(r => r.Description));
 
@@ -46,15 +46,15 @@ namespace Authentication
 
         public async Task<UserLoginResponse> Login(UserLoginViewModel userLogin)
         {
-            var result = await _signInManager.PasswordSignInAsync(userLogin.Email, userLogin.Senha, false, true);
+            SignInResult result = await _signInManager.PasswordSignInAsync(userLogin.Email, userLogin.Senha, false, true);
             if (result.Succeeded)
             {
-                var user = await _identityRepository.FindByEmailAsync(userLogin.Email);
-                var tokenResponse = await _tokenService.GenerateToken(user);
+                IdentityUser user = await _identityRepository.FindByEmailAsync(userLogin.Email);
+                TokenResponseDto tokenResponse = await _tokenService.GenerateToken(user);
                 return new UserLoginResponse(true, tokenResponse.Token, tokenResponse.DataExpiracao);
             }
 
-            var userLoginResponse = _mapper.Map<UserLoginResponse>(result);
+            UserLoginResponse userLoginResponse = _mapper.Map<UserLoginResponse>(result);
             if (!result.Succeeded)
             {
                 if (result.IsLockedOut)
@@ -72,11 +72,11 @@ namespace Authentication
 
         public async Task<IEnumerable<UserResponseDto>> GetUsersWithRolesAsync()
         {
-            var users = await _identityRepository.GetUsersAsync();
+            List<IdentityUser> users = await _identityRepository.GetUsersAsync();
 
-            var usersWithRoles = users.Select(async user =>
+            IEnumerable<Task<UserResponseDto>> usersWithRoles = users.Select(async user =>
             {
-                var roles = await _identityRepository.GetRolesAsync(user);
+                IList<string> roles = await _identityRepository.GetRolesAsync(user);
 
                 return new UserResponseDto
                 {
@@ -90,14 +90,14 @@ namespace Authentication
 
         public async Task<bool> ChangeUserPermissionAsync(string login)
         {
-            var user = await _identityRepository.FindByEmailAsync(login);
+            IdentityUser user = await _identityRepository.FindByEmailAsync(login);
 
             if (user == null)
             {
                 throw new ArgumentException("Usuário não encontrado");
             }
 
-            var isAdmin = await _identityRepository.IsInRoleAsync(user, "ADMIN");
+            bool isAdmin = await _identityRepository.IsInRoleAsync(user, "ADMIN");
 
             if (isAdmin)
             {
@@ -115,14 +115,14 @@ namespace Authentication
 
         public async Task<bool> RemoveUserAsync(string login)
         {
-            var user = await _identityRepository.FindByEmailAsync(login);
+            IdentityUser user = await _identityRepository.FindByEmailAsync(login);
 
             if (user == null)
             {
                 throw new ArgumentException("Usuário não encontrado");
             }
 
-            var result = await _identityRepository.DeleteUserAsync(user);
+            IdentityResult result = await _identityRepository.DeleteUserAsync(user);
 
             return result.Succeeded;
         }

@@ -26,7 +26,7 @@ namespace ExercicioWebAPI.Controllers
                 return BadRequest();
             }
 
-            var resultado = await _identityService.RegisterUser(usuarioCadastro);
+            UserRegisterResponse resultado = await _identityService.RegisterUser(usuarioCadastro);
             if (resultado.Sucesso)
             {
                 return Ok(resultado);
@@ -47,7 +47,7 @@ namespace ExercicioWebAPI.Controllers
                 return BadRequest();
             }
 
-            var resultado = await _identityService.Login(usuarioLogin);
+            UserLoginResponse resultado = await _identityService.Login(usuarioLogin);
             if (resultado.Sucesso)
             {
                 return Ok(resultado);
@@ -60,7 +60,7 @@ namespace ExercicioWebAPI.Controllers
         [HttpGet("usuarios")]
         public async Task<ActionResult<IEnumerable<UserResponseDto>>> GetUsersWithRoles()
         {
-            var usersWithRoles = await _identityService.GetUsersWithRolesAsync();
+            IEnumerable<UserResponseDto> usersWithRoles = await _identityService.GetUsersWithRolesAsync();
 
             return Ok(usersWithRoles);
         }

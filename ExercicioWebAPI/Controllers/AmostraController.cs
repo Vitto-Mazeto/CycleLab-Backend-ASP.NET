@@ -1,4 +1,5 @@
-﻿using DTOs.ViewModels;
+﻿using DTOs.Responses;
+using DTOs.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using Services.Interfaces;
@@ -21,8 +22,8 @@ namespace ExercicioWebAPI.Controllers
         [HttpGet]
         public async Task<IActionResult> Get()
         {
-            var amostras = await _service.GetAmostrasAsync();
-            var amostrasRetorno = amostras.ToList();
+            IEnumerable<AmostraDto> amostras = await _service.GetAmostrasAsync();
+            List<AmostraDto> amostrasRetorno = amostras.ToList();
 
             return Ok(amostrasRetorno);
         }
@@ -30,7 +31,7 @@ namespace ExercicioWebAPI.Controllers
         [HttpGet("{id}")]
         public async Task<IActionResult> GetById(int id)
         {
-            var amostra = await _service.GetAmostraByIdAsync(id);
+            AmostraDto amostra = await _service.GetAmostraByIdAsync(id);
 
             return amostra != null
                 ? Ok(amostra)
@@ -60,7 +61,7 @@ namespace ExercicioWebAPI.Controllers
                 return BadRequest("Amostra não informada");
             };
 
-            var amostraExistente = await _service.GetAmostraByIdAsync(id);
+            AmostraDto amostraExistente = await _service.GetAmostraByIdAsync(id);
 
             if (amostraExistente == null)
             {
@@ -81,7 +82,7 @@ namespace ExercicioWebAPI.Controllers
                 return BadRequest("Amostra inválida");
             };
 
-            var amostraExistente = await _service.GetAmostraByIdAsync(id);
+            AmostraDto amostraExistente = await _service.GetAmostraByIdAsync(id);
 
             if (amostraExistente == null)
             {
