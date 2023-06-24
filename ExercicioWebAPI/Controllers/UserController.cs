@@ -11,20 +11,28 @@ namespace ExercicioWebAPI.Controllers
     {
         private IIdentityService _identityService;
 
-        public UserController(IIdentityService identityService) =>
+        public UserController(IIdentityService identityService)
+        {
             _identityService = identityService;
+        }
 
         [HttpPost("cadastro")]
         public async Task<ActionResult<UserRegisterResponse>> Cadastrar(UserRegisterViewModel usuarioCadastro)
         {
             if (!ModelState.IsValid)
+            {
                 return BadRequest();
+            }
 
             var resultado = await _identityService.RegisterUser(usuarioCadastro);
             if (resultado.Sucesso)
+            {
                 return Ok(resultado);
+            }
             else if (resultado.Erros.Count > 0)
+            {
                 return BadRequest(resultado);
+            }
 
             return StatusCode(StatusCodes.Status500InternalServerError);
         }
@@ -33,11 +41,15 @@ namespace ExercicioWebAPI.Controllers
         public async Task<ActionResult<UserRegisterResponse>> Login(UserLoginViewModel usuarioLogin)
         {
             if (!ModelState.IsValid)
+            {
                 return BadRequest();
+            }
 
             var resultado = await _identityService.Login(usuarioLogin);
             if (resultado.Sucesso)
+            {
                 return Ok(resultado);
+            }
 
             return Unauthorized(resultado);
         }
@@ -80,6 +92,5 @@ namespace ExercicioWebAPI.Controllers
                 return NotFound(ex.Message);
             }
         }
-
     }
 }

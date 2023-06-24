@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "nBXmaRH3S5bCKJ5MkmYTydAk6/lqG/ayDMzCxN46gMu02fJAVktt46gR9o63+evj0feG21s0Jz7lvqrWlPQnjA==",
+  "dgSpecHash": "1NnC+vte720x7N3yyMQJsmBhuh9G2VmI8kJHrMAdhRr+Xob6Hn5UslR9lijJMzfSTBWhBMnmwS4AAwHKd0KFDQ==",
   "success": true,
   "projectFilePath": "C:\\Users\\vitto.mazeto\\source\\repos\\ExercicioWebAPI\\Domain\\Domain.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\vitto.mazeto\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.19\\microsoft.windowsdesktop.app.ref.6.0.19.nupkg.sha512",
+    "C:\\Users\\vitto.mazeto\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.19\\microsoft.netcore.app.ref.6.0.19.nupkg.sha512",
+    "C:\\Users\\vitto.mazeto\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.19\\microsoft.aspnetcore.app.ref.6.0.19.nupkg.sha512"
+  ],
   "logs": []
 }

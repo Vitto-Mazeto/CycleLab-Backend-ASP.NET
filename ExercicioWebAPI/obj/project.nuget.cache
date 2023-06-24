@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "zQxLSfQ5OKw4x8SCGj4wm4op/gbMablQkja6QBbwZGcO9aI0dhXVW1TCLY7C1XnKq7HniVskjGGY4akf20xG1w==",
+  "dgSpecHash": "4YN6UZthAx179x8IcoWID4XbAnD+NQQiuMPmZwnrudek1rH4t6ywSnRElESlv93gRV8jVLk8+L+ntyheI3U/yA==",
   "success": true,
   "projectFilePath": "C:\\Users\\vitto.mazeto\\source\\repos\\ExercicioWebAPI\\ExercicioWebAPI\\ExercicioWebAPI.csproj",
   "expectedPackageFiles": [
@@ -62,7 +62,11 @@
     "C:\\Users\\vitto.mazeto\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512",
     "C:\\Program Files\\dotnet\\sdk\\NuGetFallbackFolder\\system.security.cryptography.cng\\4.5.0\\system.security.cryptography.cng.4.5.0.nupkg.sha512",
     "C:\\Users\\vitto.mazeto\\.nuget\\packages\\system.text.encodings.web\\7.0.0\\system.text.encodings.web.7.0.0.nupkg.sha512",
-    "C:\\Users\\vitto.mazeto\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512"
+    "C:\\Users\\vitto.mazeto\\.nuget\\packages\\system.text.json\\7.0.0\\system.text.json.7.0.0.nupkg.sha512",
+    "C:\\Users\\vitto.mazeto\\.nuget\\packages\\microsoft.windowsdesktop.app.ref\\6.0.19\\microsoft.windowsdesktop.app.ref.6.0.19.nupkg.sha512",
+    "C:\\Users\\vitto.mazeto\\.nuget\\packages\\microsoft.netcore.app.ref\\6.0.19\\microsoft.netcore.app.ref.6.0.19.nupkg.sha512",
+    "C:\\Users\\vitto.mazeto\\.nuget\\packages\\microsoft.aspnetcore.app.ref\\6.0.19\\microsoft.aspnetcore.app.ref.6.0.19.nupkg.sha512",
+    "C:\\Users\\vitto.mazeto\\.nuget\\packages\\microsoft.netcore.app.host.win-x64\\6.0.19\\microsoft.netcore.app.host.win-x64.6.0.19.nupkg.sha512"
   ],
   "logs": []
 }

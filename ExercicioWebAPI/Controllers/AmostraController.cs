@@ -23,9 +23,7 @@ namespace ExercicioWebAPI.Controllers
             var amostras = await _service.GetAmostrasAsync();
             var amostrasRetorno = amostras.ToList();
 
-            return amostrasRetorno.Any()
-                ? Ok(amostrasRetorno)
-                : BadRequest("Não há amostras");
+            return Ok(amostrasRetorno);
         }
 
         [HttpGet("{id}")]
@@ -35,14 +33,17 @@ namespace ExercicioWebAPI.Controllers
 
             return amostra != null
                 ? Ok(amostra)
-                : BadRequest("Amostra não encontrada");
+                : NotFound("Amostra não encontrada");
         }
 
         [Authorize(Roles = "ADMIN")]
         [HttpPost]
         public async Task<IActionResult> Post(AmostraAddViewModel amostra)
         {
-            if (amostra == null) return BadRequest("Dados Inválidos");
+            if (amostra == null) 
+            {
+                return BadRequest("Dados Inválidos");
+            };
 
             await _service.AddAmostraAsync(amostra);
 
@@ -53,10 +54,19 @@ namespace ExercicioWebAPI.Controllers
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, AmostraUpdateViewModel amostra)
         {
-            if (id <= 0) return BadRequest("Amostra não informada");
+            if (id <= 0) 
+            {
+                return BadRequest("Amostra não informada");
+            };
 
             var amostraExistente = await _service.GetAmostraByIdAsync(id);
-            if (amostraExistente == null) return NotFound("Amostra não encontrada");
+
+
+            if (amostraExistente == null) 
+            {
+                return NotFound("Amostra não encontrada");
+            }
+            
 
             await _service.UpdateAmostraAsync(id, amostra);
 
@@ -67,11 +77,20 @@ namespace ExercicioWebAPI.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
-            if (id <= 0) return BadRequest("Amostra inválida");
+            if (id <= 0)
+            {
+                return BadRequest("Amostra inválida");
+            };
+                
 
             var amostraExistente = await _service.GetAmostraByIdAsync(id);
-            if (amostraExistente == null) return NotFound("Amostra não encontrada");
 
+
+            if (amostraExistente == null)
+            {
+                return NotFound("Amostra não encontrada");
+            };
+                
             await _service.DeleteAmostraAsync(id);
 
             return Ok("Amostra deletada com sucesso!");
