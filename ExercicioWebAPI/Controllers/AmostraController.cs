@@ -11,6 +11,7 @@ namespace ExercicioWebAPI.Controllers
     public class AmostraController : ControllerBase
     {
         private readonly IAmostraService _service;
+        private const string AdminRole = "ADMIN";
 
         public AmostraController(IAmostraService service)
         {
@@ -36,11 +37,11 @@ namespace ExercicioWebAPI.Controllers
                 : NotFound("Amostra não encontrada");
         }
 
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = AdminRole)]
         [HttpPost]
         public async Task<IActionResult> Post(AmostraAddViewModel amostra)
         {
-            if (amostra == null) 
+            if (amostra == null)
             {
                 return BadRequest("Dados Inválidos");
             };
@@ -50,30 +51,28 @@ namespace ExercicioWebAPI.Controllers
             return Ok("Amostra adicionada com sucesso!");
         }
 
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = AdminRole)]
         [HttpPut("{id}")]
         public async Task<IActionResult> Put(int id, AmostraUpdateViewModel amostra)
         {
-            if (id <= 0) 
+            if (id <= 0)
             {
                 return BadRequest("Amostra não informada");
             };
 
             var amostraExistente = await _service.GetAmostraByIdAsync(id);
 
-
-            if (amostraExistente == null) 
+            if (amostraExistente == null)
             {
                 return NotFound("Amostra não encontrada");
             }
-            
 
             await _service.UpdateAmostraAsync(id, amostra);
 
             return Ok("Amostra atualizada com sucesso!");
         }
 
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = AdminRole)]
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
@@ -81,16 +80,14 @@ namespace ExercicioWebAPI.Controllers
             {
                 return BadRequest("Amostra inválida");
             };
-                
 
             var amostraExistente = await _service.GetAmostraByIdAsync(id);
-
 
             if (amostraExistente == null)
             {
                 return NotFound("Amostra não encontrada");
             };
-                
+
             await _service.DeleteAmostraAsync(id);
 
             return Ok("Amostra deletada com sucesso!");

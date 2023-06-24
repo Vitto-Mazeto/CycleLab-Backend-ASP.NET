@@ -10,6 +10,8 @@ namespace ExercicioWebAPI.Controllers
     public class UserController : ControllerBase
     {
         private IIdentityService _identityService;
+        private const string AdminRole = "ADMIN";
+        private const string UserRole = "USER";
 
         public UserController(IIdentityService identityService)
         {
@@ -54,7 +56,7 @@ namespace ExercicioWebAPI.Controllers
             return Unauthorized(resultado);
         }
 
-        [Authorize(Roles = "ADMIN, USER")]
+        [Authorize(Roles = AdminRole + ", " + UserRole)]
         [HttpGet("usuarios")]
         public async Task<ActionResult<IEnumerable<UserResponseDto>>> GetUsersWithRoles()
         {
@@ -63,7 +65,7 @@ namespace ExercicioWebAPI.Controllers
             return Ok(usersWithRoles);
         }
 
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = AdminRole)]
         [HttpPut("usuarios/{login}/alterar-permissao")]
         public async Task<IActionResult> AlterarPermissaoUsuario(string login)
         {
@@ -78,7 +80,7 @@ namespace ExercicioWebAPI.Controllers
             }
         }
 
-        [Authorize(Roles = "ADMIN")]
+        [Authorize(Roles = AdminRole)]
         [HttpDelete("usuarios/{login}")]
         public async Task<IActionResult> RemoverUsuario(string login)
         {
