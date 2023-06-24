@@ -1,4 +1,5 @@
-﻿using DTOs.Responses;
+﻿using Domain.Entities;
+using DTOs.Responses;
 using DTOs.ViewModels;
 
 namespace Services.Interfaces
@@ -22,13 +23,13 @@ namespace Services.Interfaces
         /// Adiciona uma nova amostra assincronamente.
         /// </summary>
         /// <returns>A tarefa completada após a adição da amostra.</returns>
-        Task AddAmostraAsync(AmostraAddViewModel amostra);
+        Task AddAmostraAsync(Amostra amostra);
 
         /// <summary>
         /// Atualiza uma amostra existente assincronamente.
         /// </summary>
         /// <returns>A tarefa completada após a atualização da amostra.</returns>
-        Task UpdateAmostraAsync(int id, AmostraUpdateViewModel amostra);
+        Task UpdateAmostraAsync(Amostra amostra);
 
         /// <summary>
         /// Exclui uma amostra existente assincronamente.

@@ -1,10 +1,8 @@
 ﻿using AutoMapper;
 using DTOs.Responses;
-using DTOs.ViewModels;
 using Domain.Entities;
 using Repository.Interfaces;
 using Services.Interfaces;
-
 
 namespace Services
 {
@@ -31,18 +29,15 @@ namespace Services
             return _mapper.Map<AmostraDto>(amostra);
         }
 
-        public async Task AddAmostraAsync(AmostraAddViewModel amostra)
+        public async Task AddAmostraAsync(Amostra amostra)
         {
-            Amostra amostraEntity = _mapper.Map<Amostra>(amostra);
-            _repository.Add(amostraEntity);
+            _repository.Add(amostra);
             await _repository.SaveChangesAsync();
         }
 
-        public async Task UpdateAmostraAsync(int id, AmostraUpdateViewModel amostra)
+        public async Task UpdateAmostraAsync(Amostra amostra)
         {
-            Amostra amostraBanco = await _repository.GetAmostraByIdAsync(id);
-            Amostra amostraEntity = _mapper.Map(amostra, amostraBanco);
-            _repository.Update(amostraEntity);
+            _repository.Update(amostra);
             await _repository.SaveChangesAsync();
         }
 

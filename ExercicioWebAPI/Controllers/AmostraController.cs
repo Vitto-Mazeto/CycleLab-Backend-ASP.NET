@@ -1,4 +1,6 @@
-﻿using DTOs.Responses;
+﻿using AutoMapper;
+using Domain.Entities;
+using DTOs.Responses;
 using DTOs.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
@@ -13,10 +15,12 @@ namespace ExercicioWebAPI.Controllers
     {
         private readonly IAmostraService _service;
         private const string AdminRole = "ADMIN";
+        private readonly IMapper _mapper;
 
-        public AmostraController(IAmostraService service)
+        public AmostraController(IAmostraService service, IMapper mapper)
         {
             _service = service;
+            _mapper = mapper;
         }
 
         [HttpGet]
@@ -47,7 +51,8 @@ namespace ExercicioWebAPI.Controllers
                 return BadRequest("Dados Inválidos");
             };
 
-            await _service.AddAmostraAsync(amostra);
+            var amostraEntity = _mapper.Map<Amostra>(amostra);
+            await _service.AddAmostraAsync(amostraEntity);
 
             return Ok("Amostra adicionada com sucesso!");
         }
@@ -68,7 +73,9 @@ namespace ExercicioWebAPI.Controllers
                 return NotFound("Amostra não encontrada");
             }
 
-            await _service.UpdateAmostraAsync(id, amostra);
+            var amostraEntity = _mapper.Map<Amostra>(amostra);
+            amostraEntity.Id = id;
+            await _service.UpdateAmostraAsync(amostraEntity);
 
             return Ok("Amostra atualizada com sucesso!");
         }

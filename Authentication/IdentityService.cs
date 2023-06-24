@@ -74,18 +74,22 @@ namespace Authentication
         {
             List<IdentityUser> users = await _identityRepository.GetUsersAsync();
 
-            IEnumerable<Task<UserResponseDto>> usersWithRoles = users.Select(async user =>
+            List<UserResponseDto> usersWithRoles = new List<UserResponseDto>();
+
+            foreach (var user in users)
             {
                 IList<string> roles = await _identityRepository.GetRolesAsync(user);
 
-                return new UserResponseDto
+                var userResponseDto = new UserResponseDto
                 {
                     Login = user.UserName,
                     Roles = roles.ToList()
                 };
-            });
 
-            return await Task.WhenAll(usersWithRoles);
+                usersWithRoles.Add(userResponseDto);
+            }
+
+            return usersWithRoles;
         }
 
         public async Task<bool> ChangeUserPermissionAsync(string login)
