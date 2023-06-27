@@ -18,7 +18,7 @@ namespace Database.Context
             modelBuilder.Entity<Exame>()
                 .HasOne(e => e.Amostra)
                 .WithMany(a => a.Exames)
-                .HasForeignKey(e => e.Id);
+                .HasForeignKey(e => e.AmostraId);
         }
     }
 }
