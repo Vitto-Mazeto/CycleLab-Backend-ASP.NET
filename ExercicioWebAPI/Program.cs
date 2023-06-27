@@ -31,15 +31,18 @@ builder.Services.AddScoped<IIdentityService, IdentityService>();
 
 // Configure AutoMapper
 builder.Services.AddAutoMapper(typeof(Program).Assembly, typeof(UserProfile).Assembly);
-
+builder.Services.AddAutoMapper(typeof(Program).Assembly, typeof(AmostraProfile).Assembly);
+builder.Services.AddAutoMapper(typeof(Program).Assembly, typeof(ExameProfile).Assembly);
 
 // Configure repositories
 builder.Services.AddScoped<IBaseRepository, BaseRepository>();
 builder.Services.AddScoped<IAmostraRepository, AmostraRepository>();
+builder.Services.AddScoped<IExameRepository, ExameRepository>();
 builder.Services.AddScoped<IIdentityRepository, IdentityRepository>();
 
 // Configure services
 builder.Services.AddScoped<IAmostraService, AmostraService>();
+builder.Services.AddScoped<IExameService, ExameService>();
 
 builder.Services.AddScoped<ITokenService, TokenService>();
 
