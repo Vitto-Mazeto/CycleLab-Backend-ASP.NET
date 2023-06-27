@@ -4,5 +4,6 @@
     {
         public string Nome { get; set; }
         public int NumeroDeExames { get; set; }
+        public ICollection<Exame> Exames { get; set; }
     }
 }
