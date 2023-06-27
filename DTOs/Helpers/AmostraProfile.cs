@@ -10,6 +10,7 @@ namespace DTOs.Helpers
         public AmostraProfile()
         {
             CreateMap<Amostra, AmostraDto>();
+            CreateMap<AmostraDto, Amostra>();
             CreateMap<AmostraAddViewModel, Amostra>();
             CreateMap<AmostraUpdateViewModel, Amostra>()
                 .ForAllMembers(opts => opts.Condition((src, dest, srcMember) => srcMember != null));

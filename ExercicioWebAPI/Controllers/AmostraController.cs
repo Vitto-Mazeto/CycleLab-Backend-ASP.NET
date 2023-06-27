@@ -4,6 +4,7 @@ using DTOs.Responses;
 using DTOs.ViewModels;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using Services;
 using Services.Interfaces;
 
 namespace ExercicioWebAPI.Controllers
@@ -100,5 +101,25 @@ namespace ExercicioWebAPI.Controllers
 
             return Ok("Amostra deletada com sucesso!");
         }
+
+        [HttpGet("{id}/exames")]
+        public async Task<ActionResult<IEnumerable<ExameDto>>> GetExamesByAmostraId(int id)
+        {
+            var amostraDto = await _service.GetAmostraByIdAsync(id);
+
+            if (amostraDto == null)
+            {
+                return NotFound();
+            }
+
+            var amostra = _mapper.Map<Amostra>(amostraDto);
+
+            var exames = amostra.Exames;
+
+            var examesDto = _mapper.Map<IEnumerable<ExameDto>>(exames);
+
+            return Ok(examesDto);
+        }
+
     }
 }

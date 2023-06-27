@@ -17,7 +17,7 @@ namespace Repository
         }
         public void Update<T>(T entity) where T : class
         {
-            _context.ChangeTracker.Clear();
+            _context.ChangeTracker.Clear(); //TODO: entender exatamente como resolver esse problema
             _context.Update(entity);
         }
 

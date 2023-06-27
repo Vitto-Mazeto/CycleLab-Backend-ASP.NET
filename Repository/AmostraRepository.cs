@@ -21,8 +21,8 @@ namespace Repository
 
         public async Task<Amostra> GetAmostraByIdAsync(int id)
         {
-            return await _context.Amostras.Where(x => x.Id == id)
-                .FirstOrDefaultAsync();
+            return await _context.Amostras.Include(a => a.Exames)
+                                          .FirstOrDefaultAsync(a => a.Id == id);
         }
     }
 }

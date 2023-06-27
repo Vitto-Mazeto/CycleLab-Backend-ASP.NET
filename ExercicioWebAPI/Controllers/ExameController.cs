@@ -54,7 +54,7 @@ namespace ExercicioWebAPI.Controllers
                 return BadRequest("Dados Inválidos");
             };
 
-            var exameEntity = _mapper.Map<Exame>(exame);
+            Exame exameEntity = _mapper.Map<Exame>(exame);
             await _service.AddExameAsync(exameEntity);
 
             return Ok("Exame adicionado com sucesso!");
@@ -76,7 +76,7 @@ namespace ExercicioWebAPI.Controllers
                 return NotFound("Exame não encontrado");
             }
 
-            var exameEntity = _mapper.Map<Exame>(exame);
+            Exame exameEntity = _mapper.Map<Exame>(exame);
             exameEntity.Id = id;
             await _service.UpdateExameAsync(exameEntity);
 
