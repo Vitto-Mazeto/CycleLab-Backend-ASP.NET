@@ -88,18 +88,18 @@ namespace ExercicioWebAPI.Controllers
             if (id <= 0)
             {
                 return BadRequest("Amostra inválida");
-            };
+            }
 
             AmostraDto amostraExistente = await _service.GetAmostraByIdAsync(id);
 
             if (amostraExistente == null)
             {
                 return NotFound("Amostra não encontrada");
-            };
+            }
 
             await _service.DeleteAmostraAsync(id);
 
-            return Ok("Amostra deletada com sucesso!");
+            return Ok(new { message = "Amostra deletada com sucesso!" });
         }
 
         [HttpGet("{id}/exames")]
