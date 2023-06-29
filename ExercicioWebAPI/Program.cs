@@ -150,6 +150,7 @@ builder.Services.AddCors(options =>
 }); 
 
 var app = builder.Build();
+app.UseCors("CorsPolicy");
 
 
 if (app.Environment.IsDevelopment())
@@ -157,8 +158,6 @@ if (app.Environment.IsDevelopment())
     app.UseSwagger();
     app.UseSwaggerUI();
 }
-
-app.UseCors("CorsPolicy");
 
 app.UseHttpsRedirection();
 
