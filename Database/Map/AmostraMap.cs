@@ -12,8 +12,8 @@ namespace Database.Map
         public override void Configure(EntityTypeBuilder<Amostra> builder)
         {
             base.Configure(builder);
-            builder.Property(x => x.Nome).HasColumnName("nome").HasColumnType("varchar(100)").IsRequired();
-            builder.Property(x => x.NumeroDeExames).HasColumnName("numero_de_exames").HasColumnType("int").IsRequired();
+            builder.Property(x => x.Nome).HasColumnName("Nome").HasColumnType("varchar(100)").IsRequired();
+            builder.Property(x => x.NumeroDeRegistro).HasColumnName("NumeroDeRegistro").HasColumnType("int").IsRequired();
         }
     }
 }
