@@ -72,7 +72,7 @@ namespace ExercicioWebAPI.Controllers
             try
             {
                 await _identityService.ChangeUserPermissionAsync(login);
-                return Ok("Sucesso");
+                return Ok(new { message = "Sucesso" }); 
             }
             catch (ArgumentException ex)
             {
@@ -87,7 +87,7 @@ namespace ExercicioWebAPI.Controllers
             try
             {
                 await _identityService.RemoveUserAsync(login);
-                return Ok("Sucesso");
+                return Ok(new { message = "Sucesso" }); 
             }
             catch (ArgumentException ex)
             {
