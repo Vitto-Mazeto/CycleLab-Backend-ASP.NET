@@ -19,7 +19,7 @@ namespace ExercicioWebAPI.Controllers
         }
 
         [HttpPost("cadastro")]
-        public async Task<ActionResult<UserRegisterResponse>> Cadastrar(UserRegisterViewModel usuarioCadastro)
+        public async Task<ActionResult<UserRegisterResponse>> Cadastrar([FromBody] UserRegisterViewModel usuarioCadastro)
         {
             if (!ModelState.IsValid)
             {
@@ -40,7 +40,7 @@ namespace ExercicioWebAPI.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<ActionResult<UserRegisterResponse>> Login(UserLoginViewModel usuarioLogin)
+        public async Task<ActionResult<UserRegisterResponse>> Login([FromBody] UserLoginViewModel usuarioLogin)
         {
             if (!ModelState.IsValid)
             {
