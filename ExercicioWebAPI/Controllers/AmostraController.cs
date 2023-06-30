@@ -55,7 +55,7 @@ namespace ExercicioWebAPI.Controllers
             var amostraEntity = _mapper.Map<Amostra>(amostra);
             await _service.AddAmostraAsync(amostraEntity);
 
-            return Ok("Amostra adicionada com sucesso!");
+            return Ok(new { message = "Amostra adicionada com sucesso!" });
         }
 
         [Authorize(Roles = AdminRole)]
@@ -78,7 +78,7 @@ namespace ExercicioWebAPI.Controllers
             amostraEntity.Id = id;
             await _service.UpdateAmostraAsync(amostraEntity);
 
-            return Ok("Amostra atualizada com sucesso!");
+            return Ok(new { message = "Amostra atualizada com sucesso!" });
         }
 
         [Authorize(Roles = AdminRole)]
