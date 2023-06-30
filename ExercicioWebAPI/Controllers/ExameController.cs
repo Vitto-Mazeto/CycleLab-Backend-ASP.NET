@@ -57,7 +57,7 @@ namespace ExercicioWebAPI.Controllers
             Exame exameEntity = _mapper.Map<Exame>(exame);
             await _service.AddExameAsync(exameEntity);
 
-            return Ok("Exame adicionado com sucesso!");
+            return Ok(new { message = "Exame adicionado com sucesso!" });
         }
 
         [Authorize(Roles = AdminRole)]
@@ -101,7 +101,7 @@ namespace ExercicioWebAPI.Controllers
 
             await _service.DeleteExameAsync(id);
 
-            return Ok("Exame deletado com sucesso!");
+            return Ok(new { message = "Exame deletado com sucesso!" });
         }
     }
 }
