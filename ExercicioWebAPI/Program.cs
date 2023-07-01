@@ -15,6 +15,15 @@ using Microsoft.OpenApi.Models;
 using Authentication.Interfaces;
 using Authentication;
 using DTOs.Helpers;
+using System.Text.Json;
+using System.Text.Json.Serialization;
+using System.Collections.Generic;
+using Newtonsoft.Json;
+
+var options = new JsonSerializerOptions
+{
+    ReferenceHandler = ReferenceHandler.Preserve,
+};
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -147,11 +156,16 @@ builder.Services.AddCors(options =>
             .AllowAnyMethod()
             .AllowAnyHeader();
     });
-}); 
+});
+
+builder.Services.AddControllers()
+    .AddNewtonsoftJson(options =>
+    {
+        options.SerializerSettings.ReferenceLoopHandling = ReferenceLoopHandling.Ignore;
+    });
 
 var app = builder.Build();
 app.UseCors("CorsPolicy");
-
 
 if (app.Environment.IsDevelopment())
 {
