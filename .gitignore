@@ -1,1 +1,52 @@
+# Ignorar arquivos gerados pelo Visual Studio
 .vs/
+bin/
+obj/
+
+# Ignorar arquivos gerados pelo Rider
+.idea/
+*.sln.iml
+
+# Ignorar arquivos gerados pelo Visual Studio Code
+.vscode/
+
+# Ignorar arquivos de dependências do NuGet
+packages/
+*.nupkg
+
+# Ignorar arquivos gerados durante a compilação
+*.dll
+*.exe
+*.pdb
+*.cache
+*.log
+*.bak
+
+# Ignorar arquivos gerados durante a publicação
+*.deploy
+*.publish.xml
+
+# Ignorar arquivos de backup
+*~
+*.bak
+*.swp
+
+# Ignorar arquivos de configuração do usuário
+*.user
+*.suo
+*.userprefs
+
+# Ignorar arquivos de cache e de análise estática
+*.csproj.user
+*.resharper
+*.dotCover
+
+# Ignorar arquivos de análise de código e cobertura
+code-coverage*/
+*.opencover.xml
+*.coverlet
+
+# Ignorar arquivos de captura de erros e dados de teste
+TestResults/
+_ErrorReport.txt
+*.trx
