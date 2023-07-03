@@ -26,11 +26,11 @@ A estrutura do projeto CycleLab segue o padrão DDD e é organizada da seguinte 
 
 Para executar a aplicação CycleLab localmente, siga as etapas abaixo:
 
-1. Certifique-se de ter o .NET Core SDK instalado em sua máquina.
+1. Certifique-se de ter o [.NET Core SDK](https://dotnet.microsoft.com/en-us/download/visual-studio-sdks) instalado em sua máquina.
 2. Clone o repositório do CycleLab:
 
 ```shell
-git clone https://github.com/seu-usuario/CycleLab.git
+git clone https://github.com/Vitto-Mazeto/CycleLab.git
 ```
 
 3. Acesse a pasta do projeto:
