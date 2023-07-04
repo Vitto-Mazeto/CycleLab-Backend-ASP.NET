@@ -18,7 +18,7 @@ A estrutura do projeto CycleLab segue o padrão DDD e é organizada da seguinte 
 - `DTOs`: Contém os objetos de transferência de dados utilizados pela aplicação.
 - `Database`: Responsável pela configuração do banco de dados e migrações.
 - `Domain`: Contém as entidades de domínio.
-- `ExercicioWebAPI`: Projeto principal da API do ASP.NET, responsável por fornecer endpoints para as operações da aplicação.
+- `API`: Projeto principal da API do ASP.NET, responsável por fornecer endpoints para as operações da aplicação.
 - `Repository`: Interfaces e implementações concretas dos repositórios.
 - `Services`: Interfaces e implementações concretas dos serviços utilizados pela aplicação.
 
